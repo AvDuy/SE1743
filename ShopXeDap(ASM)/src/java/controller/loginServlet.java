@@ -32,6 +32,7 @@ public class loginServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             //Get data from HTML form  
             String u =request.getParameter("user");
   	    String p=request.getParameter("pass");
@@ -48,8 +49,8 @@ public class loginServlet extends HttpServlet {
                 response.sendRedirect("Welcome");
             }else{
                 out.write("login fail");
-                out.write("user: admin    pass: 12345");
-                response.sendRedirect("Login.html");
+                out.write("user: abc    pass: 123");
+                response.sendRedirect("login.html");
                 //request.getRequestDispatcher("login.html").include(request, response);
             }
         }
