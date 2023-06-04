@@ -5,8 +5,8 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
     <servlet>
-        <servlet-name>loginServlet</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-name>loginSer</servlet-name>
+        <servlet-class>controller.loginServlet</servlet-class>
         <init-param>
             <param-name>username</param-name>
             <param-value>abc</param-value>
@@ -16,6 +16,22 @@
             <param-value>123</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>controller.loginServlet</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>abc</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginSer</servlet-name>
+        <url-pattern>/loginsite</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/login</url-pattern>

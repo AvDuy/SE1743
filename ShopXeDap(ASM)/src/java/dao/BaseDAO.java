@@ -27,7 +27,6 @@ public abstract class BaseDAO<T> {
             String url = "jdbc:sqlserver://localhost:1433;databaseName=shopxedap;integratedSecurity=true";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
-            System.out.println("success");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

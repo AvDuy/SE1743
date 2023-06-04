@@ -18,7 +18,6 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name="loginServlet", urlPatterns={"/loginservlet"}, initParams={@WebInitParam(name="user", value="admin"), @WebInitParam(name="password", value="12345")})
 public class loginServlet extends HttpServlet {
    
     /** 
@@ -46,11 +45,11 @@ public class loginServlet extends HttpServlet {
             
             // Logic
             if(user.equals(u)&&pass.equals(p)){
-                response.sendRedirect("Welcome");
+                response.sendRedirect("index.html");
             }else{
                 out.write("login fail");
                 out.write("user: abc    pass: 123");
-                response.sendRedirect("login.html");
+                response.sendRedirect("Login.html");
                 //request.getRequestDispatcher("login.html").include(request, response);
             }
         }
