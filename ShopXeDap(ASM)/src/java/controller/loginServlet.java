@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
             }else{
                 out.write("login fail");
                 out.write("user: abc    pass: 123");
-                response.sendRedirect("Login.html");
+                response.sendRedirect("login.html");
                 //request.getRequestDispatcher("login.html").include(request, response);
             }
         }
