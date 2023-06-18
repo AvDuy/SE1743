@@ -65,6 +65,28 @@ public class BaseDAO {
         return list;
     }
     
+    public List<Product> getProductByCid(String id){
+        List<Product> list = new ArrayList<>();
+        String query = "select * from product\n" +
+                        "where cateID = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new Product(   rs.getInt(1), 
+                                    rs.getString(2), 
+                                    rs.getString(3), 
+                                    rs.getDouble(4), 
+                                    rs.getString(6)));
+            }
+        }catch (Exception e){
+        }
+        
+        return list;
+    }
+    
     public static void main(String[] args) {
         BaseDAO dao = new BaseDAO();
         List<Category> list =  dao.getCategory();

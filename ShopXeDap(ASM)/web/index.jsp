@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="mainmenu pull-left">
                                                     <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.html" class="active">Trang chủ</a></li>
+                            <li><a href="index.jsp" class="active">Trang chủ</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="shop.html">Products</a></li>
@@ -176,12 +176,14 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="left-sidebar">
+                        
+                        <!--category-productsr-->
                         <h2>Danh mục sản phẩm</h2>
-                            <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                            <div class="panel-group category-products" id="accordian">
                                 <c:forEach items="${listCategory}" var = "cate">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="#">${cate.cname}</a></h4>
+                                            <h4 class="panel-title"><a href="category?cid=${cate.cid}">${cate.cname}</a></h4>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -222,7 +224,7 @@
                         <h2 class="title text-center">MẶT HÀNG NỔI BẬT</h2>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" begin="1" end="6" >
+                                <c:forEach items="${listProduct}" var="o" > <!--begin="1" end="6"-->
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
