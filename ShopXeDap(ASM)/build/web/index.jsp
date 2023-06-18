@@ -221,35 +221,35 @@
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">MẶT HÀNG NỔI BẬT</h2>
                         <div class="container-fluid">
-                        <div class="row equal">
-                        <c:forEach items="${listProduct}" var="o" begin="1" end="6" >
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="${o.image}" class="img-fluid" alt="" />
-                                            <h2>${o.price}</h2>
-                                            <p>${o.name}</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
-                                        </div>
-                                        <div class="product-overlay">
-                                            <div class="overlay-content">
-                                                <h2>${o.price}</h2>
-                                                <p>${o.name}</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                            <div class="row equal">
+                                <c:forEach items="${listProduct}" var="o" begin="1" end="6" >
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="${o.image}" class="img-fluid" style="object-fit: contain; height: 250px;" alt="" />
+                                                    <h2>${o.price}</h2>
+                                                    <p>${o.name}</p>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>${o.price}</h2>
+                                                        <p>${o.name}</p>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="choose">
+                                                <ul class="nav nav-pills nav-justified">
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Cho vào muốn mua</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>So sánhe</a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="choose">
-                                        <ul class="nav nav-pills nav-justified">
-                                            <li><a href="#"><i class="fa fa-plus-square"></i>Cho vào muốn mua</a></li>
-                                            <li><a href="#"><i class="fa fa-plus-square"></i>So sánhe</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
-                        </c:forEach>
-                        </div>
                         </div>
                     </div><!--features_items-->
 
