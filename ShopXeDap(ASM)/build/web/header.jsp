@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
         <div class="container">
@@ -70,48 +72,49 @@
             </div>
         </div>
     </div><!--/header-middle-->
-
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
-                <div class="row">
-                        <div class="col-sm-9">
-                                <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                        </button>
-                                </div>
-                                <div class="mainmenu pull-left">
-                                        <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="<%= request.getContextPath() %>/home" class="active">Trang chủ</a></li>
-                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                    <ul role="menu" class="sub-menu">
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="product-details.html">Product Details</a></li> 
-                        <li><a href="checkout.html">Checkout</a></li> 
-                        <li><a href="cart.html">Cart</a></li> 
-                        <li><a href="login.html">Login</a></li> 
-                    </ul>
-                </li> 
-                <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-                    <ul role="menu" class="sub-menu">
-                        <li><a href="blog.html">Blog List</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                    </ul>
-                </li> 
-                                                <li><a href="404.html">404</a></li>
-                                                <li><a href="contact-us.html">Liên Hệ</a></li>
-                                        </ul>
-                                </div>
-                        </div>
-                        <div class="col-sm-3">
-                                <div class="search_box pull-right">
-                                        <input type="text" placeholder="Tìm kiếm"/>
-                                </div>
-                        </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="<%= request.getContextPath() %>/home" class="active">Trang chủ</a></li>
+                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="shop.html">Products</a></li>
+                                    <li><a href="product-details.html">Product Details</a></li> 
+                                    <li><a href="checkout.html">Checkout</a></li> 
+                                    <li><a href="cart.html">Cart</a></li> 
+                                    <li><a href="login.html">Login</a></li> 
+                                </ul>
+                            </li> 
+                            <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="blog.html">Blog List</a></li>
+                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                </ul>
+                            </li> 
+                            <li><a href="404.html">404</a></li>
+                            <li><a href="contact-us.html">Liên Hệ</a></li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="col-sm-3">
+                    <form action="search" method="get">
+                    <div class="search_box pull-right">
+                        <input value="${txtS}" name="txt" type="text" placeholder="Tìm kiếm"/>
+                    </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->

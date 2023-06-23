@@ -63,10 +63,10 @@
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">MẶT HÀNG NỔI BẬT</h2>
+                        <h2 class="title text-center">${CategoryName}</h2>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" begin="1" end="9">
+                                <c:forEach items="${listProduct}" var="o" > <!--begin="1" end="6"-->
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">

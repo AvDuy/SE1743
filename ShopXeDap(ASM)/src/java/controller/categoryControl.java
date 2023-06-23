@@ -22,7 +22,7 @@ import model.Product;
  * @author admin
  */
 @WebServlet(name="categoryControll", urlPatterns={"/category"})
-public class categoryControll extends HttpServlet {
+public class categoryControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,9 +40,12 @@ public class categoryControll extends HttpServlet {
         request.setAttribute("listProduct", list);
         
         List<Category> listCategory = dao.getCategory();
+        int getID = Integer.parseInt(cateID) - 1;
+        String cateName = listCategory.get(getID).getCname();
         request.setAttribute("listCategory", listCategory);
+        request.setAttribute("CategoryName", cateName);
         
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("listedProduct.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
