@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,9 +19,8 @@ import model.Account;
  *
  * @author admin
  */
-@WebServlet(name="logIn", urlPatterns={"/login"})
-
-public class loginServlet extends HttpServlet {
+@WebServlet(name="signUp", urlPatterns={"/signup"})
+public class signUp extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,20 +32,22 @@ public class loginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //Get data from HTML form  
-            String u =request.getParameter("user");
-  	    String p=request.getParameter("pass");
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
+        String repass = request.getParameter("repass");
+        if(!pass.equals(repass)){
+            request.setAttribute("warning", "Mật khẩu xác nhận không khớp với mật khẩu tạo ra");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }else{
             BaseDAO dao = new BaseDAO();
-            Account acc = dao.login(u, p);
-            if(acc != null){
+            Account acc = dao.checkAccountExit(user);
+            if(acc == null){
+                dao.signUp(user, pass);
                 response.sendRedirect("home");
             }else{
-                request.setAttribute("warning","Sai tài khoản hoặc mật khẩu! Vui lòng thử lại");
+                request.setAttribute("warning", "Tài khoản đã tồn tại, vui lòng tạo tên tài khoản khác");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-            
         }
     } 
 
