@@ -61,11 +61,25 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="login.jsp"><i class="fa fa-user"></i> Tài khoản</a></li>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.acc}">
+                                    <li><a href="#"><i class="fa fa-user"></i>${sessionScope.acc.user}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="login.jsp"><i class="fa fa-user"></i> Tài khoản</a></li>
+                                </c:otherwise>
+                            </c:choose>
                             <li><a href="#"><i class="fa fa-star"></i> Danh sách muốn mua</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                            <li><a href="login.jsp"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.acc}">
+                                    <li><a href="logout" onclick="return confirm('Bạn có chắc muốn đăng xuất?')"><i class="fa fa-unlock"></i>Đăng xuất</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="login.jsp"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -89,6 +103,12 @@
                             <li><a href="<%= request.getContextPath() %>/home">Trang chủ</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
+                                    <c:if test="${sessionScope.acc.isSell == 1}">
+                                        <li><a href="shop.html">Quản lý sản phẩm</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                        <li><a href="shop.html">Quản lý tài khoản</a></li>
+                                    </c:if>
                                     <li><a href="shop.html">Products</a></li>
                                     <li><a href="product-details.html">Product Details</a></li> 
                                     <li><a href="checkout.html">Checkout</a></li> 
