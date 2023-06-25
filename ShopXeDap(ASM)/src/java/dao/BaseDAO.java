@@ -127,7 +127,7 @@ public class BaseDAO {
     
     public List<Product> getAllProduct(){
         List<Product> list = new ArrayList<>();
-        String query = "Select * from product";
+        String query = "Select * from product order by id asc";
         try{
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);

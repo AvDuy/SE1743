@@ -4,6 +4,11 @@
  */
 package model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
+
 /**
  *
  * @author admin
@@ -15,6 +20,9 @@ public class Product {
     private double price;
     private String description;
 
+    Locale locale = new Locale("vi", "VN");
+    Currency currency = Currency.getInstance("VND");
+    
     public Product(int id, String name, String image, double price, String description) {
         this.id = id;
         this.name = name;
@@ -47,8 +55,18 @@ public class Product {
         this.image = image;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        currencyFormatter.setCurrency(currency);
+        if (currencyFormatter instanceof DecimalFormat) {
+            DecimalFormat decimalFormat = (DecimalFormat) currencyFormatter;
+            decimalFormat.applyPattern("#,##0.000");
+        }
+
+        String formattedValue = currencyFormatter.format(price);
+//        DecimalFormat df = new DecimalFormat("#.000");
+//        String formattedValue = df.format(price);
+        return formattedValue;
     }
 
     public void setPrice(double price) {

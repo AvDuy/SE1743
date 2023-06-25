@@ -104,7 +104,7 @@
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <c:if test="${sessionScope.acc.isSell == 1}">
-                                        <li><a href="shop.html">Quản lý sản phẩm</a></li>
+                                        <li><a href="managing">Quản lý sản phẩm</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.acc.isAdmin == 1}">
                                         <li><a href="shop.html">Quản lý tài khoản</a></li>
