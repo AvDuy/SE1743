@@ -90,7 +90,7 @@
                                 <h2>${detailP.name}</h2>
                                 <img src="images/product-details/rating.png" alt="" />
                                 <span>
-                                        <span>${detailP.price} đ</span>
+                                        <span>${detailP.price}₫</span>
                                         <label>Số lượng:</label>
                                         <input type="text" value="1" />
                                         <button type="button" class="btn btn-fefault cart">

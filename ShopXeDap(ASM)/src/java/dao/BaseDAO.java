@@ -29,6 +29,24 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void addProduct(String name, String category, String image, String description){
+        
+    }
+    
+    public void deleteProduct(String id){
+        String query = "INSERT INTO [dbo].[deletedProduct] ([id], [name], [image], [price], [title], [description], [cateID], [sell_ID])\n" +
+"SELECT [id], [name], [image], [price], [title], [description], [cateID], [sell_ID]\n" +
+"FROM [dbo].[Product]\n" +
+"WHERE [id] = ?;";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+    }
+    
     public void signUp(String user, String pass){
         String query = "insert into Account values(?,?,0,0)";
         try{
@@ -86,7 +104,10 @@ public class BaseDAO {
     public List<Product> searchName(String searchTxt){
         List<Product> list = new ArrayList<>();
         String query = "select * from product\n" +
-                        "where [name] like ?";
+                        "where [name] like ? AND id NOT IN (\n" +
+                        "    SELECT id\n" +
+                        "    FROM deletedProduct\n" +
+                        ")";
         try{
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -127,7 +148,12 @@ public class BaseDAO {
     
     public List<Product> getAllProduct(){
         List<Product> list = new ArrayList<>();
-        String query = "Select * from product order by id asc";
+        String query = "SELECT *\n" +
+                        "FROM Product\n" +
+                        "WHERE id NOT IN (\n" +
+                        "    SELECT id\n" +
+                        "    FROM deletedProduct\n" +
+                        ") order by id asc";
         try{
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);

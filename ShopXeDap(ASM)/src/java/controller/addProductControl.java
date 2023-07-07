@@ -5,25 +5,20 @@
 
 package controller;
 
-import dao.BaseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Account;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name="logIn", urlPatterns={"/login"})
-
-public class loginServlet extends HttpServlet {
+@WebServlet(name="addProductControl", urlPatterns={"/addProduct"})
+public class addProductControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,24 +30,11 @@ public class loginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //Get data from HTML form  
-            String u =request.getParameter("user");
-  	    String p=request.getParameter("pass");
-            BaseDAO dao = new BaseDAO();
-            Account acc = dao.login(u, p);
-            if(acc != null){
-                HttpSession session = request.getSession();
-                session.setAttribute("acc", acc);
-                session.setMaxInactiveInterval(60000);
-                response.sendRedirect("home");
-            }else{
-                request.setAttribute("warning","Sai tài khoản hoặc mật khẩu! Vui lòng thử lại");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-            
-        }
+        request.setCharacterEncoding("UTF-8");
+        String cateId = request.getParameter("Category");
+        String name = request.getParameter("name");
+        String image = request.getParameter("image");
+        String price = request.getParameter("price");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

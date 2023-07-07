@@ -41,7 +41,9 @@
     <jsp:include page="header.jsp"></jsp:include>
 
     <h2 class="title text-center">Quản lý sản phẩm trong cửa hàng</h2>
+    
     <div class="container" style="padding-bottom: 3%;">
+        <div style="display: flex;justify-content: center;"><a href="add" class="btn btn-default add-to-cart"><i class="fa fa-plus"></i>THÊM SẢN PHẨM VÀO CỬA HÀNG</a></div>
         <div class="row" style="background-color: #efbb98;border: 1px;border-style: solid;display: flex;">
             <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;">
                 <h4>ID</h4>
@@ -81,7 +83,7 @@
                             </a>
                         </div>
                         <div style="display: flex;align-items: center;height: 50%;">
-                            <a href="#" style="display: flex;"><i class="fa fa-trash"></i>
+                            <a href="delete?pid=${o.id}" style="display: flex" onclick="return confirm('Bạn có chắc muốn xoá sản phẩm? \n|| ${o.name} ||')"><i class="fa fa-trash"></i>
                                 <div style="padding-left: 8px;">  Xoá</div>
                             </a>
                         </div>
