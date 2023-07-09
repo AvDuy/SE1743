@@ -20,8 +20,8 @@ import model.Product;
  *
  * @author admin
  */
-@WebServlet(name="addProductControl", urlPatterns={"/addProduct"})
-public class addProductControl extends HttpServlet {
+@WebServlet(name="editControl", urlPatterns={"/editProduct"})
+public class editControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,11 +38,12 @@ public class addProductControl extends HttpServlet {
         String name = request.getParameter("name");
         String image = request.getParameter("image");
         String price = request.getParameter("price");
+        String id = request.getParameter("id");
         request.getParameterMap();
         String description = request.getParameter("description");
         
         BaseDAO dao = new BaseDAO();
-        dao.addProduct(name, cateId, image, description, price);
+        dao.updateProduct(name, image, price, description, cateId, id);
         List<Product> listProduct = dao.getAllProduct();
         
         request.setAttribute("listProduct", listProduct);

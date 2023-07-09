@@ -34,31 +34,41 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-    <h2 class="title text-center">Thêm Sản Phẩm vào cửa hàng</h2>
+    <h2 class="title text-center">Chỉnh sửa sản phẩm</h2>
     <div style="padding: 50px;padding-inline: 30%;">
-        <form action="addProduct">
+        <form action="editProduct">
+            <h1>Chỉnh sửa sản phẩm</h1>
+            <label for="id">ID: </label>
+            <input type="text" id="id" name="id" readonly required value="${editProduct.id}"><br>
             <div style="display: flex">
                 <label for="Category">Phân loại:</label><br>
                 <select id="Category" name="Category">
-                    <c:forEach items="${listCategory}" var = "cate">
-                        <option value="${cate.cid}" >${cate.cname}</option>
+                    <c:forEach items="${listCategory}" var="cate">
+                        <c:choose>
+                            <c:when test="${cate.cid == editProduct.cateId}">
+                                <option value="${cate.cid}" selected>${cate.cname}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${cate.cid}">${cate.cname}</option>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </select>
             </div>
             <label for="name">Tên sản phẩm: </label><br>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" value="${editProduct.name}" required><br>
             <label for="image">Ảnh:</label><br>
-            <input type="text" id="image" name="image"><br>
-            <label for="price">Giá tiền:</label><br>
-            <input type="text" id="price" name="price"><br>
+            <input type="text" id="image" name="image" value="${editProduct.image}" required><br>
+            <label for="price">Giá tiền (Đơn vị nghìn đồng VD: điền 1 sẽ thành 1,000đ):</label><br>
+            <input type="text" id="price" name="price" value="${editProduct.returnPrice()}" required><br>
             <label for="description">Mô tả chi tiết sản phẩm: </label><br>
-            <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            <textarea id="description" name="description" rows="4" cols="50" required>${editProduct.description}</textarea>
             <div style="
                 display: flex;
                 justify-content: center;
                 padding-top: 3%;
             ">
-                <input type="submit" value="Thêm sản phẩm">
+                <input type="submit" value="Chỉnh sửa">
             </div>
         </form>
     </div>

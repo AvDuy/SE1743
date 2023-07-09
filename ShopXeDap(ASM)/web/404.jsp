@@ -1,3 +1,10 @@
+<%-- 
+    Document   : 404
+    Created on : Jul 9, 2023, 6:22:46 PM
+    Author     : admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

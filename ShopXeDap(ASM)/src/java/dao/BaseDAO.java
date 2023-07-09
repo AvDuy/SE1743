@@ -29,8 +29,52 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public void addProduct(String name, String category, String image, String description){
+    public void updateProduct(String name, String image, String price, String description, String cateID, String id){
+        String query = "UPDATE [dbo].[product]\n" +
+                        "   SET [name] = ?" +
+                        "      ,[image] = ?" +
+                        "      ,[price] = ?" +
+                        "      ,[title] = 'x'" +
+                        "      ,[description] = ?" +
+                        "      ,[cateID] = ?" +
+                        "      ,[sell_ID] = 3\n" +
+                        " WHERE id= ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, image);
+            ps.setString(3, price);
+            ps.setString(4, description);
+            ps.setString(5, cateID);
+            ps.setString(6, id);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+    }
+    
+    public void addProduct(String name, String category, String image, String description, String price){
+        String query = "INSERT INTO [dbo].[product]([name],[image],[price],[title],[description],[cateID],[sell_ID])\n" +
+"     VALUES\n" +
+"           (?" +
+"           ,?" +
+"           ,?" +
+"           ,'x'" +
+"           ,?" +
+"           ,?" +
+"           ,3)";
         
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, image);
+            ps.setString(3, price);
+            ps.setString(4, description);
+            ps.setString(5, category);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
     }
     
     public void deleteProduct(String id){
@@ -118,7 +162,8 @@ public class BaseDAO {
                                     rs.getString(2), 
                                     rs.getString(3), 
                                     rs.getDouble(4), 
-                                    rs.getString(6)));
+                                    rs.getString(6), 
+                                    rs.getInt(7)));
             }
         }catch (Exception e){
         }
@@ -139,7 +184,8 @@ public class BaseDAO {
                                     rs.getString(2), 
                                     rs.getString(3), 
                                     rs.getDouble(4), 
-                                    rs.getString(6));
+                                    rs.getString(6), 
+                                    rs.getInt(7));
             }
         }catch (Exception e){
         }
@@ -163,7 +209,8 @@ public class BaseDAO {
                                     rs.getString(2), 
                                     rs.getString(3), 
                                     rs.getDouble(4), 
-                                    rs.getString(6)));
+                                    rs.getString(6), 
+                                    rs.getInt(7)));
             }
         }catch (Exception e){
         }
@@ -202,7 +249,8 @@ public class BaseDAO {
                                     rs.getString(2), 
                                     rs.getString(3), 
                                     rs.getDouble(4), 
-                                    rs.getString(6)));
+                                    rs.getString(6), 
+                                    rs.getInt(7)));
             }
         }catch (Exception e){
         }

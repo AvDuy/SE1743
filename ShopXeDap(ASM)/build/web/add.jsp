@@ -39,20 +39,20 @@
         <form action="addProduct">
             <div style="display: flex">
                 <label for="Category">Phân loại:</label><br>
-                <select id="Category">
+                <select id="Category" name="Category">
                     <c:forEach items="${listCategory}" var = "cate">
-                        <option value="${cate.cid}">${cate.cname}</option>
+                        <option value="${cate.cid}" >${cate.cname}</option>
                     </c:forEach>
                 </select>
             </div>
             <label for="name">Tên sản phẩm: </label><br>
-            <input type="text" id="name"><br>
+            <input type="text" id="name" name="name"><br>
             <label for="image">Ảnh:</label><br>
-            <input type="text" id="image"><br>
+            <input type="text" id="image" name="image"><br>
             <label for="price">Giá tiền:</label><br>
-            <input type="text" id="price"><br>
+            <input type="text" id="price" name="price"><br>
             <label for="description">Mô tả chi tiết sản phẩm: </label><br>
-            <textarea id="description" name="w3review" rows="4" cols="50"></textarea>
+            <textarea id="description" name="description" rows="4" cols="50"></textarea>
             <div style="
                 display: flex;
                 justify-content: center;

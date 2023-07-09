@@ -14,14 +14,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Category;
 import model.Product;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name="addProductControl", urlPatterns={"/addProduct"})
-public class addProductControl extends HttpServlet {
+@WebServlet(name="editProduct", urlPatterns={"/edit"})
+public class editProduct extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,20 +35,13 @@ public class addProductControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String cateId = request.getParameter("Category");
-        String name = request.getParameter("name");
-        String image = request.getParameter("image");
-        String price = request.getParameter("price");
-        request.getParameterMap();
-        String description = request.getParameter("description");
-        
         BaseDAO dao = new BaseDAO();
-        dao.addProduct(name, cateId, image, description, price);
-        List<Product> listProduct = dao.getAllProduct();
+        List<Category> listCategory = dao.getCategory();
+        request.setAttribute("listCategory", listCategory);
         
-        request.setAttribute("listProduct", listProduct);
-
-        request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
+        Product p = dao.getProduct(request.getParameter("pid"));
+        request.setAttribute("editProduct", p);
+        request.getRequestDispatcher("edit.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

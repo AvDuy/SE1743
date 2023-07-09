@@ -19,16 +19,24 @@ public class Product {
     private String image;
     private double price;
     private String description;
+    private double oldPrice;
+    private int cateId;
 
     Locale locale = new Locale("vi", "VN");
     Currency currency = Currency.getInstance("VND");
     
-    public Product(int id, String name, String image, double price, String description) {
+    public double returnPrice(){
+        return oldPrice;
+    }
+    
+    public Product(int id, String name, String image, double price, String description, int cateId) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.price = price;
         this.description = description;
+        this.cateId = cateId;
+        this.oldPrice = price;
     }
 
     public int getId() {
@@ -55,6 +63,14 @@ public class Product {
         this.image = image;
     }
 
+    public int getCateId(){
+        return cateId;
+    }
+    
+    public void setCateId(int cateId) {
+        this.cateId = cateId;
+    }
+    
     public String getPrice() {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
         currencyFormatter.setCurrency(currency);
@@ -76,7 +92,7 @@ public class Product {
     public String getDescription() {
         return description;
     }
-
+    
     public void setDescription(String description) {
         this.description = description;
     }

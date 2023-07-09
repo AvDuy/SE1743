@@ -37,22 +37,22 @@
                     <div class="btn-group pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    USA
+                                    VietNam
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
+                                <li><a href="#">Việt Nam</a></li>
                                 <li><a href="#">UK</a></li>
                             </ul>
                         </div>
 
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    DOLLAR
+                                    Đồng
                                     <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Canadian Dollar</a></li>
+                                <li><a href="#">Đồng</a></li>
                                 <li><a href="#">Pound</a></li>
                             </ul>
                         </div>
@@ -109,11 +109,9 @@
                                     <c:if test="${sessionScope.acc.isAdmin == 1}">
                                         <li><a href="shop.html">Quản lý tài khoản</a></li>
                                     </c:if>
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li> 
-                                    <li><a href="checkout.html">Checkout</a></li> 
-                                    <li><a href="cart.html">Cart</a></li> 
-                                    <li><a href="login.html">Login</a></li> 
+                                    <li><a href="#">Tất cả sản phẩm</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="checkout.html">Thanh Toán</a></li>
                                 </ul>
                             </li> 
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -122,7 +120,7 @@
                                     <li><a href="blog-single.html">Blog Single</a></li>
                                 </ul>
                             </li> 
-                            <li><a href="404.html">404</a></li>
+                            <li><a href="404.jsp">404</a></li>
                             <li><a href="contact-us.html">Liên Hệ</a></li>
                         </ul>
                     </div>

@@ -78,7 +78,7 @@
                 <div class="col-sm-2" style="display: flex; justify-content: center;">
                     <div class="choose" style="display: flex;flex-direction: column;justify-content: center;">
                         <div style="display: flex;align-items: center;height: 50%;">
-                            <a href="#" style="display: flex;"><i class="fa fa-edit"></i>
+                            <a href="edit?pid=${o.id}" style="display: flex;"><i class="fa fa-edit"></i>
                                 <div style="padding-left: 8px;">  Chỉnh sửa</div>
                             </a>
                         </div>
