@@ -59,10 +59,10 @@
                             <h2 class="form-title" id="signup">Đăng ký</h2>
                             <form action="signup" method="post">
                                 <div class="form-holder">
-                                    <input name="user" type="text" class="input" placeholder="Tên tài khoản" />
+                                    <input name="user" type="text" class="input" required placeholder="Tên tài khoản" />
                                     <input name="email" type="email" class="input" placeholder="Email" />
-                                    <input name="pass" type="password" class="input" placeholder="Mật khẩu" />
-                                    <input name="repass" type="password" class="input" placeholder="Xác nhận mật khẩu" />
+                                    <input name="pass" type="password" class="input" required placeholder="Mật khẩu" />
+                                    <input name="repass" type="password" class="input" required placeholder="Xác nhận mật khẩu" />
 
                                 </div>
                                 <button class="submit-btn">Tạo tài khoản</button>

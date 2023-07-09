@@ -71,7 +71,7 @@
                             </c:choose>
                             <li><a href="#"><i class="fa fa-star"></i> Danh sách muốn mua</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                            <li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             <c:choose>
                                 <c:when test="${not empty sessionScope.acc}">
                                     <li><a href="logout" onclick="return confirm('Bạn có chắc muốn đăng xuất?')"><i class="fa fa-unlock"></i>Đăng xuất</a></li>
@@ -110,7 +110,7 @@
                                         <li><a href="shop.html">Quản lý tài khoản</a></li>
                                     </c:if>
                                     <li><a href="#">Tất cả sản phẩm</a></li>
-                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="cart.jsp">Giỏ hàng</a></li>
                                     <li><a href="checkout.html">Thanh Toán</a></li>
                                 </ul>
                             </li> 

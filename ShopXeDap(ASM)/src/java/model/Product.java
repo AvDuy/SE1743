@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -13,7 +14,7 @@ import java.util.Locale;
  *
  * @author admin
  */
-public class Product {
+public class Product implements Serializable{
     private int id;
     private String name;
     private String image;

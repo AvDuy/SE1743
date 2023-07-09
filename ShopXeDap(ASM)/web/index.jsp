@@ -66,7 +66,7 @@
                         <h2 class="title text-center">MẶT HÀNG NỔI BẬT</h2>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" begin="1" end="9">
+                                <c:forEach items="${listProduct}" var="o" begin="0" end="8">
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
@@ -74,7 +74,7 @@
                                                     <img src="${o.image}" class="img-fluid" style="object-fit: contain; height: 250px;" alt="" />
                                                     <h2>${o.price}₫</h2>
                                                     <p><a href="detail?pid=${o.id}">${o.name}</a></p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    <a href="addToCart?productId=${o.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                                 </div>
 <!--                                                <div class="product-overlay">
                                                     <div class="overlay-content">
