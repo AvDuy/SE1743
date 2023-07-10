@@ -17,7 +17,7 @@
                                 </c:forEach>
                             </div><!--/category-products-->
 
-                            <div class="brands_products"><!--brands_products-->
+<!--                            <div class="brands_products">
                                     <h2>Brands</h2>
                                     <div class="brands-name">
                                             <ul class="nav nav-pills nav-stacked">
@@ -30,7 +30,7 @@
                                                     <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
                                             </ul>
                                     </div>
-                            </div><!--/brands_products-->
+                            </div>-->
 
                                 <div class="price-range"><!--price-range-->
                                         <h2>Price Range</h2>
@@ -40,9 +40,9 @@
                                         </div>
                                 </div><!--/price-range-->
 
-                                <div class="shipping text-center"><!--shipping-->
+<!--                            <div class="shipping text-center">
                                         <img src="images/home/shipping.jpg" alt="" />
-                                </div><!--/shipping-->
+                                </div>-->
 
                     </div>
                 </div>

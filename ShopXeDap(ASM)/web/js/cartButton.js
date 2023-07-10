@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-const minusButton = document.getElementById('minus');
-const plusButton = document.getElementById('plus');
-const inputField = document.getElementById('input');
-
-minusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue - 1;
-});
-
-plusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue + 1;
-});
+//const minusButton = document.getElementById('minus');
+//const plusButton = document.getElementById('plus');
+//const inputField = document.getElementById('cart_quantity_input');
+//
+//minusButton.addEventListener('click', event => {
+//  event.preventDefault();
+//  const currentValue = Number(inputField.value) || 0;
+//  inputField.value = currentValue - 1;
+//});
+//
+//plusButton.addEventListener('click', event => {
+//  event.preventDefault();
+//  const currentValue = Number(inputField.value) || 0;
+//  inputField.value = currentValue + 1;
+//});

@@ -26,7 +26,8 @@
         
         <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-        
+    <link rel="stylesheet" href="css/cartButton.css" />
+    
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -45,8 +46,8 @@
         <div class="container">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Shopping Cart</li>
+                    <li><a href="home">Home</a></li>
+                    <li class="active">Giỏ hàng</li>
                 </ol>
             </div>
             <div class="table-responsive cart_info">
@@ -86,14 +87,20 @@
                                 <form action="quantityControl">
                                     <input type="hidden" name="itemId" value="${item.id}">
                                     <div class="row" >
-                                        
-                                        <button class="col-md-4" id="plus">+</button>
+                                        <div class="counter">
+                                            <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                                            <input type="text"  name="quantity" value="${item.quantity}">
+                                            <span class="up" onClick='increaseCount(event, this)'>+</span>
+                                        </div> 
+<!--                                        <button class="col-md-4 plus-btn" id="plus">+</button>
                                         <input class="col-md-4 cart_quantity_input" type="text" id="input" name="quantity" value="${item.quantity}" autocomplete="off" size="2">
-                                        <button class="col-md-4" id="minus">−</button>
+                                        <button class="col-md-4 minus-btn" id="minus">−</button>-->
                                     </div>
+                                        
                                     <div style="display: flex;justify-content: center;">
                                         <button class="submit-btn">Xác nhận</button>
                                     </div>
+                                        <div></div>
                                 </form>
                             </div>
                         </div>
@@ -102,9 +109,9 @@
                                 <h2 style="align-self: center;">${item.getTotalPrice()}₫</h2>
                             </div>
                         </div>
-                        <div class="col-sm-1" style="display: flex; justify-content: flex-end;">
+                        <div class="col-sm-1" style="display: flex; justify-content: center;">
                             <div class="cart_delete" style="display: flex;flex-direction: column;justify-content: center;">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                <a class="cart_quantity_delete" href="deleteitem?itemId=${item.id}" onclick="return confirm('Bạn có chắc muốn bỏ sản phẩm?')"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +121,7 @@
         </div>
     </section> <!--/#cart_items-->
 
-	<section id="do_action">
+<!--    <section id="do_action">
 		<div class="container">
 			<div class="heading">
 				<h3>What would you like to do next?</h3>
@@ -189,11 +196,28 @@
 				</div>
 			</div>
 		</div>
-	</section><!--/#do_action-->
+    </section>/#do_action-->
 
 	<jsp:include page="footer.jsp"></jsp:include>
 	
-
+        <script type="text/javascript">
+      function increaseCount(a, b) {
+        var input = b.previousElementSibling;
+        var value = parseInt(input.value, 10); 
+        value = isNaN(value)? 0 : value;
+        value ++;
+        input.value = value;
+      }
+      function decreaseCount(a, b) {
+        var input = b.nextElementSibling;
+        var value = parseInt(input.value, 10); 
+        if (value > 1) {
+          value = isNaN(value)? 0 : value;
+          value --;
+          input.value = value;
+        }
+      }
+    </script>
     <script src="js/cartButton.js"></script>
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import model.Item;
 import model.Order;
@@ -24,8 +23,8 @@ import model.Product;
  *
  * @author admin
  */
-@WebServlet(name="quantityControl", urlPatterns={"/quantityControl"})
-public class quantityControl extends HttpServlet {
+@WebServlet(name="deleteItem", urlPatterns={"/deleteitem"})
+public class deleteItem extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,39 +37,29 @@ public class quantityControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String id;
         BaseDAO dao = new BaseDAO();
         request.getParameterMap();
-        
+
         if(request.getParameter("itemId")!=null){
             id = request.getParameter("itemId");
             Product product = dao.getProduct(id);
             if(product!=null){
-                if(request.getParameter("quantity")!=null){
-                    quantity = Integer.parseInt(request.getParameter("quantity"));
-                }
                 Order order = (Order) session.getAttribute("order");
                 List<Item> listItems = order.getItems();
-                boolean check = false;
                 for(Item item : listItems){
-                    if(item.getProduct().getId() == product.getId()){
-                        item.setQuantity(quantity);
-                        check = true;
+                    if(item.getId() == Integer.parseInt(id)){
+                        listItems.remove(item);
+                        order.setItems(listItems);
+                        session.setAttribute("order", order);
+                        break;
                     }
                 }
-                if(check == false){
-                    Item item = new Item();
-                    item.setQuantity(quantity);
-                    item.setProduct(product);
-                    item.setPrice(product.returnPrice());
-                    listItems.add(item);
-                }
-                session.setAttribute("order", order);
             }
             
         }
         request.getRequestDispatcher("cart.jsp").forward(request, response);
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

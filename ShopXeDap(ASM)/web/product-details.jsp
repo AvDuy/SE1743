@@ -140,7 +140,7 @@
 											<input type="text" placeholder="Your Name"/>
 											<input type="email" placeholder="Email Address"/>
 										</span>
-										<textarea name="" ></textarea>
+										<textarea></textarea>
 										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
 										<button type="button" class="btn btn-default pull-right">
 											Submit
@@ -152,7 +152,7 @@
 						</div>
 					</div><!--/category-tab-->
 					
-					<div class="recommended_items"><!--recommended_items-->
+<!--					<div class="recommended_items">recommended_items
 						<h2 class="title text-center">recommended items</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -241,7 +241,7 @@
 								<i class="fa fa-angle-right"></i>
 							  </a>			
 						</div>
-					</div><!--/recommended_items-->
+					</div>/recommended_items-->
 					
 				</div>
 			</div>
