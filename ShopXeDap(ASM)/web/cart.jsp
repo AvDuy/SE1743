@@ -50,99 +50,67 @@
                 </ol>
             </div>
             <div class="table-responsive cart_info">
-                <!--<table class="table table-condensed">-->
-<!--                    <thead>
-                        <tr class="cart_menu">
-                            <td class="image">Item</td>
-                            <td class="description"></td>
-                            <td class="price">Price</td>
-                            <td class="quantity">Quantity</td>
-                            <td class="total">Total</td>
-                            <td></td>
-                        </tr>
-                    </thead>-->
-<!--                    <tbody>-->
-                        <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
-                            <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Hình Ảnh</h4>
-                            </div>
-                            <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Tên sản phẩm</h4>
-                            </div>
-                            <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Giá sản phẩm</h4>
-                            </div>
-                            <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Số lượng</h4>
-                            </div>
-                            <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Tổng tiền</h4>
-                            </div>
-                            <div class="col-sm-1" style="display: flex;justify-content: center;align-items: center;border-color: #000">
-                                <h4>Xoá</h4>
+                <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
+                    <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Hình Ảnh</h4>
+                    </div>
+                    <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Tên sản phẩm</h4>
+                    </div>
+                    <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Giá sản phẩm</h4>
+                    </div>
+                    <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Số lượng</h4>
+                    </div>
+                    <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Tổng tiền</h4>
+                    </div>
+                    <div class="col-sm-1" style="display: flex;justify-content: center;align-items: center;border-color: #000">
+                        <h4>Xoá</h4>
+                    </div>
+                </div>
+                <c:forEach items="${sessionScope.order.items}" var="item">
+                    <div class="row" style="height: 100px;border: 1px;border-style: solid;display: flex;">
+                        <div class="col-sm-1" style="border-right: 1px solid">
+                            <img src="${item.product.image}" class="img-fluid" style="object-fit: contain;height: 100%;width: 100%;padding: 5px" alt="" />
+                        </div>
+                        <div class="col-sm-3" style="border-right: 1px solid; display: flex">
+                            <h4 style="align-self: center;">${item.product.name}</h4>
+                        </div>
+                        <div class="col-sm-2" style="border-right: 1px solid;  display: flex; justify-content: flex-end">
+                            <h2 style="align-self: center;">${item.product.price}₫</h2>
+                        </div>
+                        <div class="col-sm-2" style="border-right: 1px solid;display: flex;flex-direction: column;justify-content: center;">
+                            <div class="cart_quantity_button" style="align-self: center;">
+                                <form action="quantityControl">
+                                    <input type="hidden" name="itemId" value="${item.id}">
+                                    <div class="row" >
+                                        
+                                        <button class="col-md-4" id="plus">+</button>
+                                        <input class="col-md-4 cart_quantity_input" type="text" id="input" name="quantity" value="${item.quantity}" autocomplete="off" size="2">
+                                        <button class="col-md-4" id="minus">−</button>
+                                    </div>
+                                    <div style="display: flex;justify-content: center;">
+                                        <button class="submit-btn">Xác nhận</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <c:forEach items="${sessionScope.order.items}" var="item">
-                            <div class="row" style="height: 100px;border: 1px;border-style: solid;display: flex;">
-                                <div class="col-sm-1" style="border-right: 1px solid">
-                                    <img src="${item.product.image}" class="img-fluid" style="object-fit: contain;height: 100%;width: 100%;padding: 5px" alt="" />
-                                </div>
-                                <div class="col-sm-3" style="border-right: 1px solid; display: flex">
-                                    <h4 style="align-self: center;">${item.product.name}</h4>
-                                </div>
-                                <div class="col-sm-2" style="border-right: 1px solid;  display: flex; justify-content: flex-end">
-                                    <h2 style="align-self: center;">${item.product.price}₫</h2>
-                                </div>
-                                <div class="col-sm-2" style="border-right: 1px solid;display: flex;flex-direction: column;justify-content: center;">
-                                    <div class="cart_quantity_button" style="align-self: center;">
-                                        <a class="cart_quantity_up" href="addToCart?productId=${item.product.id}"> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="${item.quantity}" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3" style="border-right: 1px solid;display: flex; justify-content: flex-end;">
-                                    <div class="choose" style="display: flex;flex-direction: column;justify-content: center;">
-                                        <h2 style="align-self: center;">${item.getTotalPrice()}₫</h2>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1" style="display: flex; justify-content: flex-end;">
-                                    <div class="cart_delete" style="display: flex;flex-direction: column;justify-content: center;">
-                                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                    </div>
-                                </div>
+                        <div class="col-sm-3" style="border-right: 1px solid;display: flex; justify-content: flex-end;">
+                            <div class="choose" style="display: flex;flex-direction: column;justify-content: center;">
+                                <h2 style="align-self: center;">${item.getTotalPrice()}₫</h2>
                             </div>
-<!--                            <tr>
-                                <td class="" style="width: 100%;">
-                                    <a href=""><img src="${item.product.image}" alt="" style="object-fit: contain;width: 20%;"></a>
-                                </td>
-
-                                <td class="cart_description">
-                                        <h4><a href=""><c:out value="${item.product.name}" /></a></h4>
-                                </td>
-                                <td class="cart_price">
-                                        <p>${item.product.price}</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href="addToCart?productId=${item.product.id}"> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="${item.quantity}" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    
-                                    <p class="cart_total_price">${item.getTotalPrice()}₫</p>
-                                </td>
-                                <td class="cart_delete">
-                                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>-->
-                        </c:forEach>
-                        
-<!--                    </tbody>-->
-<!--                </table>-->
+                        </div>
+                        <div class="col-sm-1" style="display: flex; justify-content: flex-end;">
+                            <div class="cart_delete" style="display: flex;flex-direction: column;justify-content: center;">
+                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
-            <h2>Tổng tiền: ${order.getTotalPrice()}₫</h2>
+            <h2>Tổng giá trị đơn hàng: ${order.getTotalPrice()}₫</h2>
         </div>
     </section> <!--/#cart_items-->
 
@@ -226,7 +194,7 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 	
 
-
+    <script src="js/cartButton.js"></script>
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.scrollUp.min.js"></script>

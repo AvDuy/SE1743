@@ -24,8 +24,8 @@ import model.Product;
  *
  * @author admin
  */
-@WebServlet(name="addToCart", urlPatterns={"/addToCart"})
-public class addToCart extends HttpServlet {
+@WebServlet(name="quantityControl", urlPatterns={"/quantityControl"})
+public class quantityControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,18 +37,19 @@ public class addToCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int quantity = 1;
+        HttpSession session = request.getSession();
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String id;
         BaseDAO dao = new BaseDAO();
         request.getParameterMap();
-        if(request.getParameter("productId")!=null){
-            id = request.getParameter("productId");
+        
+        if(request.getParameter("itemId")!=null){
+            id = request.getParameter("itemId");
             Product product = dao.getProduct(id);
             if(product!=null){
                 if(request.getParameter("quantity")!=null){
                     quantity = Integer.parseInt(request.getParameter("quantity"));
                 }
-                HttpSession session = request.getSession();
                 if(session.getAttribute("order")==null){
                     Order order = new Order();
                     List<Item> listItems = new ArrayList<>();
@@ -56,7 +57,6 @@ public class addToCart extends HttpServlet {
                     item.setQuantity(quantity);
                     item.setProduct(product);
                     item.setPrice(product.returnPrice());
-                    item.setId(Integer.parseInt(id));
                     listItems.add(item);
                     order.setItems(listItems);
                     session.setAttribute("order", order);
@@ -74,7 +74,6 @@ public class addToCart extends HttpServlet {
                         Item item = new Item();
                         item.setQuantity(quantity);
                         item.setProduct(product);
-                        item.setId(Integer.parseInt(id));
                         item.setPrice(product.returnPrice());
                         listItems.add(item);
                     }
@@ -84,7 +83,6 @@ public class addToCart extends HttpServlet {
             
         }
         request.getRequestDispatcher("cart.jsp").forward(request, response);
-        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
