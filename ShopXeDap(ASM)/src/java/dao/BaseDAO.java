@@ -29,6 +29,14 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public List<Product> getListByPage(List<Product> list,int start, int end){
+        ArrayList<Product> arr = new ArrayList<>();
+        for(int i = start; i< end; i++){
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
+    
     public void updateProduct(String name, String image, String price, String description, String cateID, String id){
         String query = "UPDATE [dbo].[product]\n" +
                         "   SET [name] = ?" +

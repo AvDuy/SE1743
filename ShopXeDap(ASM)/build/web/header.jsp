@@ -109,7 +109,7 @@
                                     <c:if test="${sessionScope.acc.isAdmin == 1}">
                                         <li><a href="shop.html">Quản lý tài khoản</a></li>
                                     </c:if>
-                                    <li><a href="#">Tất cả sản phẩm</a></li>
+                                    <li><a href="allproduct">Tất cả sản phẩm</a></li>
                                     <li><a href="cart.jsp">Giỏ hàng</a></li>
                                     <li><a href="checkout.html">Thanh Toán</a></li>
                                 </ul>

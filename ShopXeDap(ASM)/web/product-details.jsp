@@ -93,13 +93,18 @@
                                         <span>${detailP.price}₫</span>
                                         <label>Số lượng:</label>
                                         <input type="text" value="1" />
-                                        <button type="button" class="btn btn-fefault cart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                Thêm vào giỏ
-                                        </button>
+                                        <a href="addToCart?productId=${detailP.id}">
+                                            <button type="button" class="btn btn-fefault cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Thêm vào giỏ
+                                            </button>
+                                        </a>
                                 </span>
                                 <p><b>Tình trạng:</b> Còn hàng</p>
                                 <p><b>Nhãn hiệu:</b> No name</p>
+                                <c:if test="${sessionScope.acc.isSell == 1}">
+                                    <a href="edit?pid=${detailP.id}">Chỉnh sửa sản phẩm</a>
+                                </c:if>
                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                             </div><!--/product-information-->
                         </div>

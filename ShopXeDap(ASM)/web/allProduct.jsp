@@ -35,6 +35,28 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    
+    <style>
+        .pagination {
+          display: inline-block;
+        }
+
+        .pagination a {
+          color: black;
+          float: left;
+          padding: 8px 16px;
+          text-decoration: none;
+          transition: background-color .3s;
+        }
+
+        .pagination a.active {
+          background-color: #FE980F;
+          color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+    
 </head><!--/head-->
 
 <body>
@@ -63,19 +85,18 @@
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <p>  Kết quả tìm kiếm cho "${txtS}":</p>
-                        <p>   (${listProduct.size()} sản phẩm được tìm thấy)</p>
+                        <h2 class="title text-center">Tất cả sản phẩm</h2>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" varStatus="i"> <!--begin="1" end="6"-->
+                                <c:forEach items="${data}" var="o">
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
                                                     <img src="${o.image}" class="img-fluid" style="object-fit: contain; height: 250px;" alt="" />
-                                                    <h2>${o.price}</h2>
+                                                    <h2>${o.price}₫</h2>
                                                     <p><a href="detail?pid=${o.id}">${o.name}</a></p>
-                                                    <a href="addToCart?productId=${detailP.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    <a href="addToCart?productId=${o.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                                 </div>
 <!--                                                <div class="product-overlay">
                                                     <div class="overlay-content">
@@ -93,13 +114,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                </c:forEach>
+                            </div>
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <div class="pagination">
+                                <c:forEach begin="${1}" end = "${requestScope.numb}" var="i">
+                                    <a class="${i==page?"active":""}" href="allproduct?page=${i}">${i}</a>
                                 </c:forEach>
                             </div>
                         </div>
                     </div><!--features_items-->
-
-<!--                                <div class="category-tab">category-tab
+<!--                    <div class="category-tab">category-tab
                                         <div class="col-sm-12">
                                                 <ul class="nav nav-tabs">
                                                         <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
@@ -387,7 +412,7 @@
                                         </div>
                                 </div>/category-tab
 
-                                <div class="recommended_items">recommended_items
+                    <div class="recommended_items">recommended_items
                                         <h2 class="title text-center">recommended items</h2>
 
                                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -437,12 +462,12 @@
                                                                 <div class="col-sm-4">
                                                                         <div class="product-image-wrapper">
                                                                                 <div class="single-products">
-                                                                                        <div class="productinfo text-center">
-                                                                                                <img src="images/home/recommend1.jpg" alt="" />
-                                                                                                <h2>$56</h2>
-                                                                                                <p>Easy Polo Black Edition</p>
-                                                                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                                        </div>
+                                                                                    <div class="productinfo text-center">
+                                                                                        <img src="images/home/recommend1.jpg" alt="" />
+                                                                                        <h2>$56</h2>
+                                                                                        <p>Easy Polo Black Edition</p>
+                                                                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                                    </div>
 
                                                                                 </div>
                                                                         </div>
@@ -451,10 +476,10 @@
                                                                         <div class="product-image-wrapper">
                                                                                 <div class="single-products">
                                                                                         <div class="productinfo text-center">
-                                                                                                <img src="images/home/recommend2.jpg" alt="" />
-                                                                                                <h2>$56</h2>
-                                                                                                <p>Easy Polo Black Edition</p>
-                                                                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                                            <img src="images/home/recommend2.jpg" alt="" />
+                                                                                            <h2>$56</h2>
+                                                                                            <p>Easy Polo Black Edition</p>
+                                                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                                                         </div>
 
                                                                                 </div>
@@ -489,8 +514,8 @@
         </div>
     </section>
 
+    
     <jsp:include page="footer.jsp"></jsp:include>
-	
 
   
     <script src="js/jquery.js"></script>

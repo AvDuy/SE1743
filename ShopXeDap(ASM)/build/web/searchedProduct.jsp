@@ -75,7 +75,7 @@
                                                     <img src="${o.image}" class="img-fluid" style="object-fit: contain; height: 250px;" alt="" />
                                                     <h2>${o.price}</h2>
                                                     <p><a href="detail?pid=${o.id}">${o.name}</a></p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    <a href="addToCart?productId=${detailP.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                                 </div>
 <!--                                                <div class="product-overlay">
                                                     <div class="overlay-content">
