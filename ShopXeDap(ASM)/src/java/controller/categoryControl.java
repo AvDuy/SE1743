@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Category;
 import model.Product;
@@ -35,15 +36,43 @@ public class categoryControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String cateID = request.getParameter("cid");
+        HttpSession session = request.getSession();
+        if(cateID == null){
+            cateID = (String) session.getAttribute("cid");
+        }else{
+            session.setAttribute("cid", cateID);
+        }
         BaseDAO dao = new BaseDAO();
         List<Product> list = dao.getProductByCid(cateID);
         request.setAttribute("listProduct", list);
+        
+        
         
         List<Category> listCategory = dao.getCategory();
         int getID = Integer.parseInt(cateID) - 1;
         String cateName = listCategory.get(getID).getCname();
         request.setAttribute("listCategory", listCategory);
         request.setAttribute("CategoryName", cateName);
+        
+        int page, numbperpage = 6;
+        int size = list.size();
+        int numb=(size%numbperpage==0?(size/numbperpage):(size/numbperpage+1));
+        String xpage = request.getParameter("page");
+        if(xpage==null){
+            page =1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        
+        int start, end;
+        start=(page-1)*numbperpage;
+        end = Math.min(page*numbperpage, size);
+        List<Product> listPage = dao.getListByPage(list, start, end);
+        
+        request.setAttribute("idCate", cateID);
+        request.setAttribute("numb", numb);
+        request.setAttribute("page", page);
+        request.setAttribute("data", listPage);
         
         request.getRequestDispatcher("listedProduct.jsp").forward(request, response);
     } 

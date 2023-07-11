@@ -46,6 +46,23 @@ public class editControl extends HttpServlet {
         dao.updateProduct(name, image, price, description, cateId, id);
         List<Product> listProduct = dao.getAllProduct();
         
+        int page, numbperpage = 12;
+        int size = listProduct.size();
+        int numb=(size%numbperpage==0?(size/numbperpage):(size/numbperpage+1));
+        String xpage = request.getParameter("page");
+        if(xpage==null){
+            page =1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        
+        int start, end;
+        start=(page-1)*numbperpage;
+        end = Math.min(page*numbperpage, size);
+        List<Product> listPage = dao.getListByPage(listProduct, start, end);
+        request.setAttribute("numb", numb);
+        request.setAttribute("page", page);
+        request.setAttribute("data", listPage);
         request.setAttribute("listProduct", listProduct);
 
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);

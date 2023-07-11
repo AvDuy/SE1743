@@ -7,11 +7,13 @@
                         
                         <!--category-productsr-->
                         <h2>Danh mục sản phẩm</h2>
-                            <div class="panel-group category-products" id="accordian">
-                                <c:forEach items="${listCategory}" var = "cate">
+                            <div class="panel-group category-products cateDesign" id="accordian">
+                                <c:forEach items="${listCategory}" var = "cate" varStatus="loop">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="category?cid=${cate.cid}">${cate.cname}</a></h4>
+                                            <h4 class="panel-title">
+                                                <a class="${idCate==cate.cid?"active":""}" style="width: 100%;" href="category?cid=${cate.cid}">${cate.cname}</a>
+                                            </h4>
                                         </div>
                                     </div>
                                 </c:forEach>

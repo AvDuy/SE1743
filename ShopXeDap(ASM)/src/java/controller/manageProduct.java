@@ -36,9 +36,27 @@ public class manageProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         BaseDAO dao = new BaseDAO();
         List<Product> listProduct = dao.getAllProduct();
-        
         request.setAttribute("listProduct", listProduct);
-
+        
+        int page, numbperpage = 12;
+        int size = listProduct.size();
+        int numb=(size%numbperpage==0?(size/numbperpage):(size/numbperpage+1));
+        String xpage = request.getParameter("page");
+        if(xpage==null){
+            page =1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        
+        int start, end;
+        start=(page-1)*numbperpage;
+        end = Math.min(page*numbperpage, size);
+        List<Product> listPage = dao.getListByPage(listProduct, start, end);
+        
+        request.setAttribute("numb", numb);
+        request.setAttribute("page", page);
+        request.setAttribute("data", listPage);
+        
         request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
     } 
 

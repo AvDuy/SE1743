@@ -24,7 +24,7 @@
         
     <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-
+    <link href="css/pagination.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -44,6 +44,12 @@
     
     <div class="container" style="padding-bottom: 3%;">
         <div style="display: flex;justify-content: center;"><a href="add" class="btn btn-default add-to-cart"><i class="fa fa-plus"></i>THÊM SẢN PHẨM VÀO CỬA HÀNG</a></div>
+        <c:set var="page" value="${requestScope.page}"/>
+        <div class="pagination">
+            <c:forEach begin="${1}" end = "${requestScope.numb}" var="i">
+                <a class="${i==page?"active":""}" href="managing?page=${i}">${i}</a>
+            </c:forEach>
+        </div>
         <div class="row" style="background-color: #efbb98;border: 1px;border-style: solid;display: flex;">
             <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;">
                 <h4>ID</h4>
@@ -61,7 +67,8 @@
                 <h4>Thao tác</h4>
             </div>
         </div>
-        <c:forEach items="${listProduct}" var="o">
+        
+        <c:forEach items="${data}" var="o">
             <div class="row" style="border: 1px;border-style: solid;display: flex;">
                 <div class="col-sm-1" style="border-right: 1px solid; display: flex; justify-content: center;">
                     <h2 style="align-self: center">${o.id}</h2>
@@ -91,6 +98,12 @@
                 </div>
             </div>
         </c:forEach>
+        <c:set var="page" value="${requestScope.page}"/>
+        <div class="pagination" style="padding-top: 3%;">
+            <c:forEach begin="${1}" end = "${requestScope.numb}" var="i">
+                <a class="${i==page?"active":""}" href="managing?page=${i}">${i}</a>
+            </c:forEach>
+        </div>
     </div>
     
     <jsp:include page="footer.jsp"></jsp:include>

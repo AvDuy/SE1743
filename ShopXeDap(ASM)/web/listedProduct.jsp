@@ -24,7 +24,8 @@
         
     <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-
+    <link href="css/pagination.css" rel="stylesheet">
+    <link href="css/cateDesign.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -60,13 +61,13 @@
         <div class="container">
             <div class="row">
                 <jsp:include page="left-side-bar.jsp"></jsp:include>
-
+                
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">${CategoryName}</h2>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" > <!--begin="1" end="6"-->
+                                <c:forEach items="${data}" var="o" > <!--begin="1" end="6"-->
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
@@ -92,6 +93,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                </c:forEach>
+                                
+                            </div>
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <div class="pagination">
+                                <c:forEach begin="${1}" end = "${requestScope.numb}" var="i">
+                                    <a class="${i==page?"active":""}" href="category?page=${i}">${i}</a>
                                 </c:forEach>
                             </div>
                         </div>
