@@ -118,6 +118,7 @@
                 </c:forEach>
             </div>
             <h2>Tổng giá trị đơn hàng: ${order.getTotalPrice()}₫</h2>
+            <a href="checkout.jsp"><button class="submit-btn" style="margin-bottom: 2%;">Thanh toán</button></a>
         </div>
     </section> <!--/#cart_items-->
 
@@ -200,7 +201,7 @@
 
 	<jsp:include page="footer.jsp"></jsp:include>
 	
-        <script type="text/javascript">
+    <script>
       function increaseCount(a, b) {
         var input = b.previousElementSibling;
         var value = parseInt(input.value, 10); 

@@ -45,7 +45,7 @@
             <div class='content' >
               <div class="alert alert-danger alert-white rounded">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <strong>Error!</strong> ${warning}.
+                ${warning}
               </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                             <form action="signup" method="post">
                                 <div class="form-holder">
                                     <input name="user" type="text" class="input" required placeholder="Tên tài khoản" />
-                                    <input name="email" type="email" class="input" placeholder="Email" />
+                                    <input name="email" type="email" class="input" required placeholder="Email" />
                                     <input name="pass" type="password" class="input" required placeholder="Mật khẩu" />
                                     <input name="repass" type="password" class="input" required placeholder="Xác nhận mật khẩu" />
 
