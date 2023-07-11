@@ -25,7 +25,7 @@
         
         <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-        
+    <link href="css/cateDesign.css" rel="stylesheet">
         
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>

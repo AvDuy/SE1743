@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Category;
 import model.Product;
@@ -36,11 +37,20 @@ public class detailControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("pid");
         BaseDAO dao = new BaseDAO();
-        
         Product p = dao.getProduct(id);
+        
+        String cateID = Integer.toString(p.getCateId());
+        HttpSession session = request.getSession();
+        if(cateID == null){
+            cateID = (String) session.getAttribute("cid");
+        }else{
+            session.setAttribute("cid", cateID);
+        }
+        
         request.setAttribute("detailP", p);
         
         List<Category> listCategory = dao.getCategory();
+        request.setAttribute("idCate", cateID);
         request.setAttribute("listCategory", listCategory);
         request.getRequestDispatcher("product-details.jsp").forward(request, response);
     } 

@@ -24,7 +24,7 @@
         
     <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-
+    <link href="css/pagination.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -67,7 +67,7 @@
                         <p>   (${listProduct.size()} sản phẩm được tìm thấy)</p>
                         <div class="container-fluid">
                             <div class="row equal">
-                                <c:forEach items="${listProduct}" var="o" varStatus="i"> <!--begin="1" end="6"-->
+                                <c:forEach items="${data}" var="o" varStatus="i"> <!--begin="1" end="6"-->
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
@@ -93,7 +93,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                </c:forEach>
+                            </div>
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <div class="pagination">
+                                <c:forEach begin="${1}" end = "${requestScope.numb}" var="i">
+                                    <a class="${i==page?"active":""}" href="search?page=${i}">${i}</a>
                                 </c:forEach>
                             </div>
                         </div>

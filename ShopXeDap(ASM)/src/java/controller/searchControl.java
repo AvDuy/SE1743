@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Category;
 import model.Product;
@@ -40,9 +41,34 @@ public class searchControl extends HttpServlet {
         List<Category> listCategory = dao.getCategory();
         request.setAttribute("listCategory", listCategory);
         
+        HttpSession session = request.getSession();
         String txSearch = request.getParameter("txt");
+        if(txSearch == null){
+            txSearch = (String) session.getAttribute("txt");
+        }else{
+            session.setAttribute("txt", txSearch);
+        }
+        
         List<Product> listP = dao.searchName(txSearch);
         
+        int page, numbperpage = 6;
+        int size = listP.size();
+        int numb=(size%numbperpage==0?(size/numbperpage):(size/numbperpage+1));
+        String xpage = request.getParameter("page");
+        if(xpage==null){
+            page =1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        
+        int start, end;
+        start=(page-1)*numbperpage;
+        end = Math.min(page*numbperpage, size);
+        List<Product> listPage = dao.getListByPage(listP, start, end);
+        
+        request.setAttribute("numb", numb);
+        request.setAttribute("page", page);
+        request.setAttribute("data", listPage);
         request.setAttribute("txtS", txSearch);
         request.setAttribute("listProduct", listP);
         request.getRequestDispatcher("searchedProduct.jsp").forward(request, response);
