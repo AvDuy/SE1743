@@ -42,14 +42,13 @@ public class BaseDAO {
             ps = conn.prepareStatement(query);
             ps.setInt(1, billId);
             ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Item i = new Item();
                 i.setId(resultSet.getInt("product_id"));
                 i.setImage(resultSet.getNString("image"));
                 i.setPrice(resultSet.getDouble("price"));
                 i.setQuantity(resultSet.getInt("quantity"));
                 itemList.add(i);
-            } else {
             }
             return itemList;
         }catch (Exception e){
@@ -57,21 +56,34 @@ public class BaseDAO {
         return null;
     }
     
-    public Order getBillByStatus(int status){
-        String query = "SELECT *\n" +
-                        "FROM [dbo].[bill]\n" +
-                        "WHERE [status] = ?";
+    public List<Order> getBillByStatus(int status){
+        String query = "SELECT b.*, ba.*\n" +
+                        "FROM [dbo].[bill] AS b\n" +
+                        "JOIN [dbo].[BillAddress] AS ba ON b.billAdId = ba.billId\n" +
+                        "WHERE b.[status] = ?";
         try{
-            Order oder = new Order();
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setInt(1, status);
             ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
+            List<Order> listOrder = new ArrayList<>();
+            while (resultSet.next()) {
+                Order oder = new Order();
                 int billId = resultSet.getInt("billId");
+                List<Item> listItem = getCartByBillId(billId);
                 oder.setDate(resultSet.getDate("date_created"));
-            } else {
+                oder.setEmail(resultSet.getString("email"));
+                oder.setFirstName(resultSet.getString("first_name"));
+                oder.setLastName(resultSet.getString("last_name"));
+                oder.setMainAddress(resultSet.getString("address1"));
+                oder.setAddress2(resultSet.getString("address2"));
+                oder.setPhone(resultSet.getString("phone"));
+                oder.setItems(listItem);
+                oder.setStatus(status);
+                oder.setId(billId);
+                listOrder.add(oder);
             }
+            return listOrder;
         }catch (Exception e){
         }
         return null;

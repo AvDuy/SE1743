@@ -5,6 +5,7 @@
 
 package controller;
 
+import dao.BaseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Order;
 
 /**
  *
@@ -31,6 +34,10 @@ public class invoiceControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        BaseDAO dao = new BaseDAO();
+        List<Order> listO = dao.getBillByStatus(0);
+        request.setAttribute("listOrder", listO);
+        request.getRequestDispatcher("invoice.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

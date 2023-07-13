@@ -3,11 +3,6 @@
     Created on : Jul 14, 2023, 3:25:16 AM
     Author     : admin
 --%>
-<%-- 
-    Document   : index
-    Created on : Jun 18, 2023, 1:51:16 AM
-    Author     : admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
