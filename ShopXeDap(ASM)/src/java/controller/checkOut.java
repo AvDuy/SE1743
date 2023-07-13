@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Date;
+import java.time.LocalDate;
 import model.Order;
 
 /**
@@ -47,8 +49,21 @@ public class checkOut extends HttpServlet {
             String address1 = request.getParameter("address1");
             String address2 = request.getParameter("address2");
             String phone = request.getParameter("phone");
-            dao.addAddress(email, firstName, LastName, address1, address2, phone);
             
+            // Check bill address have exist in database or not
+            int billAdId = dao.getAddressID(email, firstName, LastName, address1, address2, phone);
+            if(billAdId == -1){
+                // if haven't add into dtb and get the id again
+                dao.addAddress(email, firstName, LastName, address1, address2, phone);
+                billAdId = dao.getAddressID(email, firstName, LastName, address1, address2, phone);
+            }
+            
+            //get Date created
+            LocalDate currentDate = LocalDate.now();
+            Date dateCreated = Date.valueOf(currentDate);
+            String totalPrice = order.getTotalPrice();
+            int status = 0;
+            dao.addBill(dateCreated, status, totalPrice, billAdId);
         }
         
     } 

@@ -11,10 +11,12 @@ package dao;
 
 import context.DBContext;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,10 +31,47 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void addBill(Date date, int status,String totalPrice, int billAdId){
+        String query = "INSERT INTO bill (date_created, status, total_price, billAdId) " +
+                     "VALUES (?, ?, ?, ?)";
+         try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setDate(1, date);
+            ps.setInt(2, status);
+            ps.setString(3, totalPrice);
+            ps.setInt(4, billAdId);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+    }
+    
+    public int getAddressID(String email, String firstName, String lastName, String address1, String address2, String phone){
+        String query = "SELECT billId FROM BillAddress WHERE email = ? " +
+                     "AND first_name = ? AND last_name = ? AND address1 = ? " +
+                     "AND address2 = ? AND phone = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, firstName);
+            ps.setString(3, lastName);
+            ps.setString(4, address1);
+            ps.setString(5, address2);
+            ps.setString(6, phone);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                int billId = resultSet.getInt("billId");
+                return billId;
+            } else {
+                return -1;
+            }
+        }catch (Exception e){
+        }
+        return 0;
+    }
+    
     public void addAddress(String email, String firstName, String lastName, String address1, String address2, String phone){
-        // Get account to get account id
-        
-        
         String query = "INSERT INTO BillAddress (email, first_name, last_name, address1, address2,uID, phone)\n" +
                         "VALUES (?,\n" +
                         "		?,\n" +
@@ -41,10 +80,7 @@ public class BaseDAO {
                         "		?, \n" +
                         "		?, \n" +
                         "		?);";
-        
         try{
-            
-            
             Account a = checkAccountExitEmail(email);
             if(a != null){
                 int uID = a.getId();
@@ -59,6 +95,14 @@ public class BaseDAO {
                 ps.setString(7, phone);
                 ps.executeUpdate();
             }else{
+                conn = new DBContext().getConnection();
+                ps = conn.prepareStatement(query);
+                ps.setString(1, email);
+                ps.setString(2, firstName);
+                ps.setString(3, lastName);
+                ps.setString(4, address1);
+                ps.setString(5, address2);
+                ps.setNull(6, Types.NULL);
                 ps.setString(7, phone);
                 ps.executeUpdate();
             }

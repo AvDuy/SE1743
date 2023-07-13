@@ -94,11 +94,11 @@
                         <div class="bill-to">
                             <p>Gửi đến địa chỉ:</p>
                             <div class="billInfo">
-                                    <input type="text" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="email" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
                                     <input type="text" name="firstName" placeholder="Tên*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
                                     <input type="text" name="LastName" placeholder="Họ*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                    <input type="text" name="address1" placeholder="Địa chỉ 1 *" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                    <input type="text" name="address2" placeholder="Địa chỉ 2" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="address1" placeholder="Địa chỉ chính*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="address2" placeholder="Địa chỉ phụ" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
                             </div>
                             <div class="form-two">
                                     <input type="text" placeholder="Zip / Postal Code" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300;">
@@ -125,7 +125,7 @@
                                         <option>Vũng Tàu</option>
                                         <option>Hà Nội</option>
                                     </select>
-                                    <input type="text" name="phone" placeholder="Số điện thoại *" style="margin-top: 4%;background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300" required>
+                                    <input type="tel" name="phone" placeholder="Số điện thoại (xxx xxx xxxx)*" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" style="margin-top: 4%;background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300" required>
                             </div>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
 
     <jsp:include page="footer.jsp"></jsp:include>
 	
-
+    
     <script type="text/javascript">
       function increaseCount(a, b) {
         var input = b.previousElementSibling;

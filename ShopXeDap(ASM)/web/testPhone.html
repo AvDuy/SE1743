@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="" method="post" id="cusCreate" autocomplete="off">
+    <input onchange="addSpaces(this);" type="tel" name="telphone" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" title="Ten digits code" required/>    
+    <label style="font-size:9px;padding-left:20px">Eg: 081 222 2224</label> 
+    <input type="submit" value="Submit"/>
+</form>
+
+<script>
+    function addSpaces(input) {
+        input.value = input.value.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
+    }
+</script>
+
+    </body>
+</html>
