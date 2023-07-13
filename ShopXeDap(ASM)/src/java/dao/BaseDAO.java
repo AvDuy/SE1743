@@ -29,6 +29,43 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void addAddress(String email, String firstName, String lastName, String address1, String address2, String phone){
+        // Get account to get account id
+        
+        
+        String query = "INSERT INTO BillAddress (email, first_name, last_name, address1, address2,uID, phone)\n" +
+                        "VALUES (?,\n" +
+                        "		?,\n" +
+                        "		?, \n" +
+                        "		?, \n" +
+                        "		?, \n" +
+                        "		?, \n" +
+                        "		?);";
+        
+        try{
+            
+            
+            Account a = checkAccountExitEmail(email);
+            if(a != null){
+                int uID = a.getId();
+                conn = new DBContext().getConnection();
+                ps = conn.prepareStatement(query);
+                ps.setString(1, email);
+                ps.setString(2, firstName);
+                ps.setString(3, lastName);
+                ps.setString(4, address1);
+                ps.setString(5, address2);
+                ps.setString(6, Integer.toString(uID));
+                ps.setString(7, phone);
+                ps.executeUpdate();
+            }else{
+                ps.setString(7, phone);
+                ps.executeUpdate();
+            }
+        }catch (Exception e){
+        }
+    }
+    
     public List<Product> getListByPage(List<Product> list,int start, int end){
         ArrayList<Product> arr = new ArrayList<>();
         for(int i = start; i< end; i++){
@@ -99,16 +136,37 @@ public class BaseDAO {
         }
     }
     
-    public void signUp(String user, String pass){
-        String query = "insert into Account values(?,?,0,0)";
+    public void signUp(String user, String pass, String email){
+        String query = "insert into Account values(?,?,0,0,?)";
         try{
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, user);
             ps.setString(2, pass);
+            ps.setString(3, email);
             ps.executeUpdate();
         }catch (Exception e){
         }
+    }
+    
+    public Account checkAccountExitEmail(String email){
+        String query =  "select * from Account\n" +
+                        "where [email] = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                return new Account(rs.getInt(1), 
+                        rs.getString(2), 
+                        rs.getString(3), 
+                        rs.getInt(4), 
+                        rs.getInt(5));
+            }
+        }catch (Exception e){
+        }
+        return null;
     }
     
     public Account checkAccountExit(String user){

@@ -43,8 +43,8 @@
     <jsp:include page="header.jsp"></jsp:include>
     
     <section id="cart_items">
-        <div class="container">
-            <form action="action">
+    <div class="container">
+        <form action="checkout">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
@@ -71,82 +71,79 @@
                 </ul>
             </div><!--/checkout-options-->
 
-                <div class="register-req">
-                    <p>Hãy sử dụng tài khoản để có thể thấy lịch sử đặt hàng hoặc sử dụng thanh toán nhanh để thanh toán luôn!</p>
-                </div><!--/register-req-->
+            <div class="register-req">
+                <p>Hãy sử dụng tài khoản để có thể thấy lịch sử đặt hàng hoặc sử dụng thanh toán nhanh để thanh toán luôn!</p>
+            </div><!--/register-req-->
 
-                <div class="shopper-informations">
-                            <div class="row">
-<!--                                <div class="col-sm-3">
-                                    <div class="shopper-info">
-                                        <p>Shopper Information</p>
-                                        <form>
-                                            <input type="text" placeholder="Display Name">
-                                            <input type="text" placeholder="User Name">
-                                            <input type="password" placeholder="Password">
-                                            <input type="password" placeholder="Confirm password">
-                                        </form>
-                                        <a class="btn btn-primary" href="">Get Quotes</a>
-                                        <a class="btn btn-primary" href="">Continue</a>
-                                    </div>
-                                </div>-->
-                                <div class="col-sm-5 clearfix">
-                                    <div class="bill-to">
-                                        <p>Gửi đến địa chỉ:</p>
-                                        <div class="billInfo">
-                                            <form>
-                                                <input type="text" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                                <input type="text" placeholder="Tên*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                                <input type="text" placeholder="Họ*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                                <input type="text" placeholder="Địa chỉ 1 *" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                                <input type="text" placeholder="Địa chỉ 2" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
-                                            </form>
-                                        </div>
-                                        <div class="form-two">
-                                            <form>
-                                                <input type="text" placeholder="Zip / Postal Code *">
-                                                <select>
-                                                        <option>-- Đất nước --</option>
-                                                        <option>United States</option>
-                                                        <option>Bangladesh</option>
-                                                        <option>UK</option>
-                                                        <option>India</option>
-                                                        <option>Pakistan</option>
-                                                        <option>Ucrane</option>
-                                                        <option>Canada</option>
-                                                        <option>Dubai</option>
-                                                        <option>Việt Nam</option>
-                                                </select>
-                                                <select>
-                                                        <option>-- Thành Phố / Tỉnh / Thành --</option>
-                                                        <option>Hồ Chí Minh</option>
-                                                        <option>Vĩnh Phúc</option>
-                                                        <option>Hạ Long</option>
-                                                        <option>Đắc Lắc</option>
-                                                        <option>Buôn Mê Thuật</option>
-                                                        <option>Nha Trang</option>
-                                                        <option>Vũng Tàu</option>
-                                                        <option>Hà Nội</option>
-                                                </select>
-                                                <input type="text" placeholder="Số điện thoại *">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-					<div class="col-sm-4">
-                                            <div class="order-message">
-                                                <p>Ghi chú cho đơn hàng</p>
-                                                <textarea name="message"  placeholder="Viết ghi chú của bạn cho shop hay shipper vào đây" rows="16"></textarea>
-                                                <label><input type="checkbox">Gửi đơn hàng theo địa chỉ trên</label>
-                                            </div>	
-					</div>					
-				</div>
-			</div>
+            <div class="shopper-informations">
+                <div class="row">
+<!--                    <div class="col-sm-3">
+                        <div class="shopper-info">
+                            <p>Shopper Information</p>
+                            <form>
+                                <input type="text" placeholder="Display Name">
+                                <input type="text" placeholder="User Name">
+                                <input type="password" placeholder="Password">
+                                <input type="password" placeholder="Confirm password">
+                            </form>
+                            <a class="btn btn-primary" href="">Get Quotes</a>
+                            <a class="btn btn-primary" href="">Continue</a>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-5 clearfix">
+                        <div class="bill-to">
+                            <p>Gửi đến địa chỉ:</p>
+                            <div class="billInfo">
+                                    <input type="text" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="firstName" placeholder="Tên*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="LastName" placeholder="Họ*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="address1" placeholder="Địa chỉ 1 *" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    <input type="text" name="address2" placeholder="Địa chỉ 2" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                            </div>
+                            <div class="form-two">
+                                    <input type="text" placeholder="Zip / Postal Code" style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300;">
+                                    <select>
+                                        <option>-- Đất nước --</option>
+                                        <option>United States</option>
+                                        <option>Bangladesh</option>
+                                        <option>UK</option>
+                                        <option>India</option>
+                                        <option>Pakistan</option>
+                                        <option>Ucrane</option>
+                                        <option>Canada</option>
+                                        <option>Dubai</option>
+                                        <option>Việt Nam</option>
+                                    </select>
+                                    <select>
+                                        <option>-- Thành Phố / Tỉnh / Thành --</option>
+                                        <option>Hồ Chí Minh</option>
+                                        <option>Vĩnh Phúc</option>
+                                        <option>Hạ Long</option>
+                                        <option>Đắc Lắc</option>
+                                        <option>Buôn Mê Thuật</option>
+                                        <option>Nha Trang</option>
+                                        <option>Vũng Tàu</option>
+                                        <option>Hà Nội</option>
+                                    </select>
+                                    <input type="text" name="phone" placeholder="Số điện thoại *" style="margin-top: 4%;background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="order-message">
+                            <p>Ghi chú cho đơn hàng</p>
+                            <textarea name="message"  placeholder="Viết ghi chú của bạn cho shop hay shipper vào đây" rows="16"></textarea>
+                            <label><input type="checkbox">Gửi đơn hàng theo địa chỉ trên</label>
+                        </div>	
+                    </div>
+                </div>
+            </div>
             <div class="review-payment">
                 <h2>Xem trước & Chi trả</h2>
             </div>
-
-            <div class="table-responsive cart_info">
+            <c:choose>
+                <c:when test="${not empty sessionScope.order.items}">
+                    <div class="table-responsive cart_info">
                 <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
                     <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
                         <h4>Hình Ảnh</h4>
@@ -180,24 +177,24 @@
                         </div>
                         <div class="col-sm-2" style="border-right: 1px solid;display: flex;flex-direction: column;justify-content: center;">
                             <div class="cart_quantity_button" style="align-self: center;">
-                                <form action="quantityControl">
+<!--                                <form action="quantityControl">-->
                                     <input type="hidden" name="itemId" value="${item.id}">
                                     <div class="row" >
                                         <div class="counter">
-                                            <span class="down" onClick='decreaseCount(event, this)'>-</span>
+<!--                                            <span class="down" onClick='decreaseCount(event, this)'>-</span>-->
                                             <input type="text"  name="quantity" value="${item.quantity}">
-                                            <span class="up" onClick='increaseCount(event, this)'>+</span>
+<!--                                            <span class="up" onClick='increaseCount(event, this)'>+</span>-->
                                         </div> 
-<!--                                        <button class="col-md-4 plus-btn" id="plus">+</button>
+    <!--                                <button class="col-md-4 plus-btn" id="plus">+</button>
                                         <input class="col-md-4 cart_quantity_input" type="text" id="input" name="quantity" value="${item.quantity}" autocomplete="off" size="2">
                                         <button class="col-md-4 minus-btn" id="minus">−</button>-->
                                     </div>
-                                        
+
                                     <div style="display: flex;justify-content: center;">
-                                        <button class="submit-btn">Xác nhận</button>
+<!--                                        <button class="submit-btn">Xác nhận</button>-->
                                     </div>
                                         <div></div>
-                                </form>
+<!--                                </form>-->
                             </div>
                         </div>
                         <div class="col-sm-3" style="border-right: 1px solid;display: flex; justify-content: flex-end;">
@@ -226,8 +223,14 @@
                 </span>
             </div>
             <button class="submit-btn" type="submit" style="margin: 2%;">Xác nhận thông tin và thanh toán</button>
-            </form>
-        </div>
+                </c:when>
+                <c:otherwise>
+                    <h2>Bạn chưa có sản phẩm nào trong giỏ hàng cả</h2>
+                </c:otherwise>
+            </c:choose>
+            
+        </form>
+    </div>
     </section> <!--/#cart_items-->
     
 

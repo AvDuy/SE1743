@@ -106,7 +106,7 @@
                                     
                                     <li><a href="allproduct">Tất cả sản phẩm</a></li>
                                     <li><a href="cart.jsp">Giỏ hàng</a></li>
-                                    <li><a href="checkout.html">Thanh Toán</a></li>
+                                    <li><a href="checkout.jsp">Thanh Toán</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -117,19 +117,21 @@
                             </li> 
                             <li><a href="404.jsp">404</a></li>
                             <li><a href="contact-us.html">Liên Hệ</a></li>
-                            <li class="dropdown"><a href="#">Quản lý<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <c:if test="${sessionScope.acc.isSell == 1}">
-                                        <li><a href="managing">Sản phẩm</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
-                                        <li><a href="shop.html">Tài khoản</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.acc.isSell == 1}">
-                                        <li><a href="managing">Đơn hàng</a></li>
-                                    </c:if>
-                                </ul>
-                            </li>
+                            <c:if test="${sessionScope.acc.isSell == 1}">
+                                <li class="dropdown"><a href="#">Quản lý<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <c:if test="${sessionScope.acc.isSell == 1}">
+                                            <li><a href="managing">Sản phẩm</a></li>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                            <li><a href="shop.html">Tài khoản</a></li>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc.isSell == 1}">
+                                            <li><a href="invoice.jsp">Đơn hàng</a></li>
+                                        </c:if>
+                                    </ul>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>

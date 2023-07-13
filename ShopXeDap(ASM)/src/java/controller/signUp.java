@@ -32,21 +32,28 @@ public class signUp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        // Get attribue form jsp
         String user = request.getParameter("user");
+        String email = request.getParameter("email");
         String pass = request.getParameter("pass");
         String repass = request.getParameter("repass");
+        String userLowerCase = user.toLowerCase();
+        
         if(!pass.equals(repass)){
-            request.setAttribute("warning", " Error! Mật khẩu xác nhận không khớp với mật khẩu tạo ra");
+            request.setAttribute("warning", "Error! Mật khẩu xác nhận không khớp với mật khẩu tạo ra");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }else{
             BaseDAO dao = new BaseDAO();
-            Account acc = dao.checkAccountExit(user);
+            Account acc = dao.checkAccountExit(userLowerCase);
+            acc = dao.checkAccountExitEmail(email);
             if(acc == null){
-                dao.signUp(user, pass);
+                dao.signUp(user, pass,email);
                 request.setAttribute("warning", "Tạo tài khoản thành công, vui lòng đăng nhập tài khoản");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }else{
-                request.setAttribute("warning", "Error!  Tài khoản đã tồn tại, vui lòng tạo tên tài khoản khác");
+                request.setAttribute("warning", "Error! Tên Tài khoản hoặc email đã tồn tại, vui lòng tạo tên tài khoản khác");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
