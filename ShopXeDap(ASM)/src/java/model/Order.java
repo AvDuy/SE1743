@@ -5,6 +5,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -20,9 +21,26 @@ public class Order implements Serializable{
     private List<Item> items;
     private int status;
     private double totalPrice;
+    private double doublePrice;
+    private Date date;
     
     Locale locale = new Locale("vi", "VN");
     Currency currency = Currency.getInstance("VND");
+    
+    public Date getDate(){
+        return date;
+    }
+    
+    public void setDate(Date date){
+        this.date = date;
+    }
+    
+    public double getDoublePrice(){
+        for(Item i : items){
+            doublePrice +=i.getPrice();
+        }
+        return doublePrice;
+    }
     
     public String getTotalPrice(){
         double totalBill = 0;

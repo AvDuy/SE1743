@@ -23,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
 import model.Category;
+import model.Item;
+import model.Order;
 import model.Product;
 
 
@@ -31,15 +33,106 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public void addBill(Date date, int status,String totalPrice, int billAdId){
-        String query = "INSERT INTO bill (date_created, status, total_price, billAdId) " +
+    public List<Item> getCartByBillId(int billId){
+        String query = "SELECT *FROM [dbo].[Cart]\n" +
+                "WHERE [Billid] = ?";
+        try{
+            List<Item> itemList = new ArrayList<>();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, billId);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                Item i = new Item();
+                i.setId(resultSet.getInt("product_id"));
+                i.setImage(resultSet.getNString("image"));
+                i.setPrice(resultSet.getDouble("price"));
+                i.setQuantity(resultSet.getInt("quantity"));
+                itemList.add(i);
+            } else {
+            }
+            return itemList;
+        }catch (Exception e){
+        }
+        return null;
+    }
+    
+    public Order getBillByStatus(int status){
+        String query = "SELECT *\n" +
+                        "FROM [dbo].[bill]\n" +
+                        "WHERE [status] = ?";
+        try{
+            Order oder = new Order();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, status);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                int billId = resultSet.getInt("billId");
+                oder.setDate(resultSet.getDate("date_created"));
+            } else {
+            }
+        }catch (Exception e){
+        }
+        return null;
+    }
+    
+    public void addCartToDbs(int billId, int productId, String image, double price,int quantity, double totalPrice){
+        String query = "INSERT INTO [dbo].[Cart]([Billid],[product_id],[image],[price],[quantity],[total_price])\n" +
+                        "     VALUES(?\n" +
+                        "           ,?\n" +
+                        "           ,?\n" +
+                        "           ,?\n" +
+                        "           ,?\n" +
+                        "           ,?)";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, billId);
+            ps.setInt(2, productId);
+            ps.setString(3, image);
+            ps.setDouble(4, price);
+            ps.setInt(5, quantity);
+            ps.setDouble(6, totalPrice);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+    }
+    
+    public int getBillId(Date date, int status,double totalPrice, int billAdId){
+        String query = "SELECT billId FROM [dbo].[bill]\n" +
+                        "WHERE [date_created] = ?\n" +
+                        "  AND [status] = ?\n" +
+                        "  AND [total_price] = ?\n" +
+                        "  AND [billAdId] = ?;";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setDate(1, date);
+            ps.setInt(2, status);
+            ps.setDouble(3, totalPrice);
+            ps.setInt(4, billAdId);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                int billId = resultSet.getInt("billId");
+                return billId;
+            } else {
+                return -1;
+            }
+        }catch (Exception e){
+        }
+        return -1;
+    }
+    
+    public void addBill(Date date, int status,double totalPrice, int billAdId){
+        String query = "INSERT INTO bill(date_created, status, total_price, billAdId) " +
                      "VALUES (?, ?, ?, ?)";
          try{
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setDate(1, date);
             ps.setInt(2, status);
-            ps.setString(3, totalPrice);
+            ps.setDouble(3, totalPrice);
             ps.setInt(4, billAdId);
             ps.executeUpdate();
         }catch (Exception e){

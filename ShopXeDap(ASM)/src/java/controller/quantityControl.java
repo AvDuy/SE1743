@@ -63,6 +63,7 @@ public class quantityControl extends HttpServlet {
                     Item item = new Item();
                     item.setQuantity(quantity);
                     item.setProduct(product);
+                    item.setImage(product.getImage());
                     item.setPrice(product.returnPrice());
                     listItems.add(item);
                 }

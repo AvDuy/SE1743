@@ -55,6 +55,7 @@ public class addToCart extends HttpServlet {
                     Item item = new Item();
                     item.setQuantity(quantity);
                     item.setProduct(product);
+                    item.setImage(product.getImage());
                     item.setPrice(product.returnPrice());
                     item.setId(Integer.parseInt(id));
                     listItems.add(item);
@@ -74,6 +75,7 @@ public class addToCart extends HttpServlet {
                         Item item = new Item();
                         item.setQuantity(quantity);
                         item.setProduct(product);
+                        item.setImage(product.getImage());
                         item.setId(Integer.parseInt(id));
                         item.setPrice(product.returnPrice());
                         listItems.add(item);

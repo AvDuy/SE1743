@@ -18,16 +18,25 @@ public class Item implements Serializable{
     private int id;
     private Product product;
     private int quantity;
+    private String image;
     private double price;
     private double totalPrice;
 
     Locale locale = new Locale("vi", "VN");
     Currency currency = Currency.getInstance("VND");
     
+    public void setImage(String image){
+        this.image = image;
+    }
+    
+    public String getImage(){
+        return image;
+    }
+    
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
