@@ -43,12 +43,13 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
     <div class="container">
-        <h5>Ngày đặt: </h5>
-        <h5>Email: </h5>
+        <h5>Ngày đặt: ${bill.date}</h5>
+        <h5>Email: ${bill.email}</h5>
         <h5>Họ tên người đặt: ${bill.lastName} ${bill.firstName}</h5>
-        <h5>Địa chỉ chính: </h5>
-        <h5>Địa chỉ phụ: </h5>
-        <h5>Điện thoại: </h5>
+        <h5>Địa chỉ chính: ${bill.mainAddress}</h5>
+        <h5>Địa chỉ phụ: ${bill.getAddress2()}</h5>
+        <h5>Điện thoại: ${bill.phone}</h5>
+        
             <div class="table-responsive cart_info">
                 <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
                     <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
@@ -89,7 +90,30 @@
                 </c:forEach>
             </div>
             <h2>Tổng giá trị đơn hàng: ${bill.getTotalPrice()}₫</h2>
-            <a href="checkout.jsp"><button class="submit-btn" style="margin-bottom: 2%;">Thanh toán</button></a>
+            
+        <c:choose>
+            <c:when test="${bill.status == 0}">
+              <h5>Trạng thái: Chờ xử lý</h5>
+              <a href="updatestatus?billId=${bill.id}&status=1"><button class="submit-btn" style="margin-bottom: 2%;">Giao Hàng</button></a><br>
+              
+            </c:when>
+            <c:when test="${bill.status == 1}">
+              <h5>Trạng thái: Đang giao hàng</h5>
+              <a href="updatestatus?billId=${bill.id}&status=2"><button class="submit-btn" style="margin-bottom: 2%;">Xác nhận giao hàng thành công</button></a>
+              <a href="updatestatus?billId=${bill.id}&status=0"><button class="submit-btn" style="margin-bottom: 2%;">Đặt lại thành chờ xử lý</button></a><br>
+            </c:when>
+            <c:when test="${bill.status == 2}">
+              <h5>Trạng thái: Giao Thành Công</h5>
+              <a href="updatestatus?billId=${bill.id}&status=0"><button class="submit-btn" style="margin-bottom: 2%;">Đặt lại thành chờ xử lý</button></a><br>
+            </c:when>
+              <c:when test="${bill.status == 3}">
+              <h5>Trạng thái: Đơn Hàng bị huỷ</h5>
+              <a href="updatestatus?billId=${bill.id}&status=0"><button class="submit-btn" style="margin-bottom: 2%;">Đặt lại thành chờ xử lý</button></a><br>
+            </c:when>
+            <c:otherwise>
+              <h5>Trạng thái: Unknown</h5>
+            </c:otherwise>
+        </c:choose>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
 

@@ -13,15 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Order;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name="invoiceControl", urlPatterns={"/invoice"})
-public class invoiceControl extends HttpServlet {
+@WebServlet(name="updateStatus", urlPatterns={"/updatestatus"})
+public class updateStatus extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,20 +32,10 @@ public class invoiceControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         BaseDAO dao = new BaseDAO();
+        int billId = Integer.parseInt(request.getParameter("billId"));
+        int status = Integer.parseInt(request.getParameter("status"));
         
-        
-        if(request.getParameter("status") != null){
-            int status = Integer.parseInt(request.getParameter("status"));
-            List<Order> listO = dao.getBillByStatus(status);
-            request.setAttribute("OrderStatus", status);
-            request.setAttribute("listOrder", listO);
-            request.getRequestDispatcher("invoice.jsp").forward(request, response);
-        }else{
-            List<Order> listO = dao.getAllBill();
-            request.setAttribute("OrderStatus", 400);
-            request.setAttribute("listOrder", listO);
-            request.getRequestDispatcher("invoice.jsp").forward(request, response);
-        }
+        dao.updateStatus(status, billId);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
