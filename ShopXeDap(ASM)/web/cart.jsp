@@ -50,6 +50,9 @@
                     <li class="active">Giỏ hàng</li>
                 </ol>
             </div>
+            
+            <c:choose>
+                <c:when test="${not empty sessionScope.order.items}">
             <div class="table-responsive cart_info">
                 <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
                     <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
@@ -119,6 +122,14 @@
             </div>
             <h2>Tổng giá trị đơn hàng: ${order.getTotalPrice()}₫</h2>
             <a href="checkout.jsp"><button class="submit-btn" style="margin-bottom: 2%;">Thanh toán</button></a>
+            </c:when>
+                <c:otherwise>
+                    <div style="display: flex;flex-direction: column;align-items: center;padding-bottom: 5%;">
+                    <h2>Bạn chưa có sản phẩm nào trong giỏ hàng cả</h2>
+                    <img src = "https://dosaandchaat.com/templates/default-new/images/no-product-found.png">
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </section> <!--/#cart_items-->
 

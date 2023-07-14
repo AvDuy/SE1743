@@ -69,7 +69,6 @@
         </c:choose>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
-
   
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -33,6 +33,37 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void updateAddressEmail(String email){
+        String query = "UPDATE ba\n" +
+                        "SET ba.uID = a.uID\n" +
+                        "FROM BillAddress AS ba\n" +
+                        "JOIN Account AS a ON ba.email = a.[email]\n" +
+                        "WHERE ba.email = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+        }catch (Exception e){
+        }
+    }
+    
+    public boolean checkEmailInAddress(String email){
+        String query = "select * from BillAddress\n" +
+                        "where [email] = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+        }
+        return false;
+    }
+    
     public List<Order> getAccountAddress(int uID){
         String query = "SELECT b.*, a.*\n" +
                         "FROM [dbo].[Account] AS a\n" +

@@ -50,6 +50,9 @@ public class signUp extends HttpServlet {
             acc = dao.checkAccountExitEmail(email);
             if(acc == null){
                 dao.signUp(user, pass,email);
+                if(dao.checkEmailInAddress(email)){
+                    dao.updateAddressEmail(email);
+                }
                 request.setAttribute("warning", "Tạo tài khoản thành công, vui lòng đăng nhập tài khoản");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }else{

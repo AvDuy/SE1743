@@ -231,7 +231,7 @@
                 </span>
             </div>
             <button class="submit-btn" type="submit" style="margin: 2%;">Xác nhận thông tin và thanh toán</button>
-                </c:when>
+            </c:when>
                 <c:otherwise>
                     <h2>Bạn chưa có sản phẩm nào trong giỏ hàng cả</h2>
                 </c:otherwise>

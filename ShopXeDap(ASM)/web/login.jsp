@@ -55,37 +55,37 @@
         <div style="width: 70%;padding-block: 35px;background-image: url(https://wallpaperset.com/w/full/d/2/b/115638.jpg); background-repeat: no-repeat;background-size: cover;display: flex;justify-content: center;">
             
             <div class="form-structor">
-                    <div class="signup">
-                            <h2 class="form-title" id="signup">Đăng ký</h2>
-                            <form action="signup" method="post">
-                                <div class="form-holder">
-                                    <input name="user" type="text" class="input" required placeholder="Tên tài khoản" />
-                                    <input name="email" type="email" class="input" required placeholder="Email" />
-                                    <input name="pass" type="password" class="input" required placeholder="Mật khẩu" />
-                                    <input name="repass" type="password" class="input" required placeholder="Xác nhận mật khẩu" />
+                <div class="signup">
+                    <h2 class="form-title" id="signup">Đăng ký</h2>
+                    <form action="signup" method="post">
+                        <div class="form-holder">
+                            <input name="user" type="text" class="input" required placeholder="Tên tài khoản" />
+                            <input name="email" type="email" class="input" required placeholder="Email" />
+                            <input name="pass" type="password" class="input" required placeholder="Mật khẩu" />
+                            <input name="repass" type="password" class="input" required placeholder="Xác nhận mật khẩu" />
 
-                                </div>
-                                <button class="submit-btn">Tạo tài khoản</button>
-                            </form>
-                    </div>
-                    <div class="login slide-up">
-                        <div class="center">
-                            <h2 class="form-title" id="login">Đã có tài khoản</h2>
-                            <div class="form-holder">
-                                <div class="login-form"><!--login form-->
-                                    <form action="login" method="post">
-                                            <input name="user" type="text" placeholder="Email" />
-                                            <input name="pass" type="password" placeholder="Mật khẩu" />
-                                            <span>
-                                            <input type="checkbox" class="checkbox"> 
-                                            Lưu tài khoản đăng nhập
-                                        </span>
-                                        <button class="submit-btn">Đăng nhập</button>
-                                    </form>
-                                </div><!--/login form-->
-                            </div>
+                        </div>
+                        <button class="submit-btn">Tạo tài khoản</button>
+                    </form>
+                </div>
+                <div class="login slide-up">
+                    <div class="center">
+                        <h2 class="form-title" id="login">Đã có tài khoản</h2>
+                        <div class="form-holder">
+                            <div class="login-form"><!--login form-->
+                                <form action="login" method="post">
+                                        <input name="user" type="text" placeholder="Email" />
+                                        <input name="pass" type="password" placeholder="Mật khẩu" />
+                                        <span>
+                                        <input type="checkbox" class="checkbox"> 
+                                        Lưu tài khoản đăng nhập
+                                    </span>
+                                    <button class="submit-btn">Đăng nhập</button>
+                                </form>
+                            </div><!--/login form-->
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

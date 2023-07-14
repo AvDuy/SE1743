@@ -74,7 +74,7 @@ public class checkOut extends HttpServlet {
                 double productTotal = item.getPrice();
                 dao.addCartToDbs(billId, productId, image, price, quantity, productTotal);
             }
-            
+            session.removeAttribute("order");
             response.sendRedirect("thankForShopping.jsp");
             
         }
