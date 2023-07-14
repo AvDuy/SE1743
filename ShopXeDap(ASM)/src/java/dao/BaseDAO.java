@@ -33,6 +33,23 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void updateAccount(int isSell, int isAdmin, int uID){
+        String query = "UPDATE [dbo].[Account]\n" +
+                        "   SET [isSell] = ?\n" +
+                        "      ,[isAdmin] = ?\n" +
+                        " WHERE [uID] = ?";
+        
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, isSell);
+            ps.setInt(2, isAdmin);
+            ps.setInt(3, uID);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+    }
+    
     public List<Account> getAllAccount(){
         String query = "select * from Account";
         try{

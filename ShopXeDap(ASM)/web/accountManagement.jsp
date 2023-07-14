@@ -43,7 +43,7 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 5%;">
         <div class="table-responsive cart_info">
             <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
                 <div class="col-sm-4" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000;">
@@ -63,19 +63,16 @@
                 </div>
             </div>
             <c:forEach items="${ListAccount}" var="a">
-                <form action="action">
+                <form action="setaccount">
+                    <input type="hidden" id="uid" name="uid" value="${a.id}">
                     <div class="row" style="height: 100px;border: 1px;border-style: solid;display: flex;">
                         <div class="col-sm-4" style="border-right: 1px solid; display: flex;">
-                            <a href="orderdetail?billId=${o.id}" style="align-self: center;">
                             ${a.email}
-                            </a>
                         </div>
                         <div class="col-sm-3" style="border-right: 1px solid;display: flex; justify-content: flex-end;">
                             <h5 style="align-self: center;">${a.user}</h5>
                         </div>
-
                         <div class="col-sm-2" style="border-right: 1px solid;display: flex; justify-content: center;">
-
                             <input type="checkbox" id="vehicle1" name="isSell" value="1" ${a.isSell == 1 ? 'checked' : ''}>
                             <label for="isSell" style="align-self: center;margin-left: 10%;"> Bán Hàng</label>
                         </div>
@@ -91,9 +88,6 @@
                 </form>
             </c:forEach>
         </div>
-        <c:forEach items="${ListAccount}" var="a">
-            ${a.email}
-        </c:forEach>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
 

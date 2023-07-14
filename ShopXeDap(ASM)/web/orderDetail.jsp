@@ -95,12 +95,13 @@
             <c:when test="${bill.status == 0}">
               <h5>Trạng thái: Chờ xử lý</h5>
               <a href="updatestatus?billId=${bill.id}&status=1"><button class="submit-btn" style="margin-bottom: 2%;">Giao Hàng</button></a><br>
-              
+              <a href="updatestatus?billId=${bill.id}&status=3"><button class="submit-btn" style="margin-bottom: 2%;">Huỷ bỏ đơn hàng</button></a><br>
             </c:when>
             <c:when test="${bill.status == 1}">
               <h5>Trạng thái: Đang giao hàng</h5>
               <a href="updatestatus?billId=${bill.id}&status=2"><button class="submit-btn" style="margin-bottom: 2%;">Xác nhận giao hàng thành công</button></a>
               <a href="updatestatus?billId=${bill.id}&status=0"><button class="submit-btn" style="margin-bottom: 2%;">Đặt lại thành chờ xử lý</button></a><br>
+              <a href="updatestatus?billId=${bill.id}&status=3"><button class="submit-btn" style="margin-bottom: 2%;">Huỷ bỏ đơn hàng</button></a><br>
             </c:when>
             <c:when test="${bill.status == 2}">
               <h5>Trạng thái: Giao Thành Công</h5>
