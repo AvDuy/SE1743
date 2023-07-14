@@ -21,6 +21,15 @@ public class Item implements Serializable{
     private String image;
     private double price;
     private double totalPrice;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     Locale locale = new Locale("vi", "VN");
     Currency currency = Currency.getInstance("VND");
@@ -57,6 +66,21 @@ public class Item implements Serializable{
         this.quantity = quantity;
     }
 
+    public String getProductPrice(){
+        double formattedPrice = price;
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        currencyFormatter.setCurrency(currency);
+        if (currencyFormatter instanceof DecimalFormat) {
+            DecimalFormat decimalFormat = (DecimalFormat) currencyFormatter;
+            decimalFormat.applyPattern("#,##0.000");
+        }
+
+        String formattedValue = currencyFormatter.format(formattedPrice);
+//        DecimalFormat df = new DecimalFormat("#.000");
+//        String formattedValue = df.format(price);
+        return formattedValue;
+    }
+    
     public double getPrice(){
         double total = price * quantity;
         return total;

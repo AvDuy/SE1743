@@ -33,9 +33,41 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public Order getOrderByBillId(int billId){
+        String query = "SELECT b.*, ba.*\n" +
+                        "FROM [dbo].[bill] AS b\n" +
+                        "JOIN [dbo].[BillAddress] AS ba ON b.billAdId = ba.billId\n" +
+                        "WHERE b.[billId] = ?";
+        try{
+            Order oder = new Order();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, billId);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                List<Item> listItem = getCartByBillId(billId);
+                oder.setDate(resultSet.getDate("date_created"));
+                oder.setEmail(resultSet.getString("email"));
+                oder.setFirstName(resultSet.getString("first_name"));
+                oder.setLastName(resultSet.getString("last_name"));
+                oder.setMainAddress(resultSet.getString("address1"));
+                oder.setAddress2(resultSet.getString("address2"));
+                oder.setPhone(resultSet.getString("phone"));
+                oder.setItems(listItem);
+                oder.setStatus(resultSet.getInt("status"));
+                oder.setId(billId);
+                return oder;
+            }else{}
+        }catch (Exception e){
+        }
+        return null;
+    }
+    
     public List<Item> getCartByBillId(int billId){
-        String query = "SELECT *FROM [dbo].[Cart]\n" +
-                "WHERE [Billid] = ?";
+        String query = "SELECT b.*, ba.*\n" +
+"FROM [dbo].[product] AS b\n" +
+"JOIN [dbo].[Cart] AS ba ON b.id = ba.product_id\n" +
+"where [Billid] = ?";
         try{
             List<Item> itemList = new ArrayList<>();
             conn = new DBContext().getConnection();
@@ -48,6 +80,7 @@ public class BaseDAO {
                 i.setImage(resultSet.getNString("image"));
                 i.setPrice(resultSet.getDouble("price"));
                 i.setQuantity(resultSet.getInt("quantity"));
+                i.setName(resultSet.getString("name"));
                 itemList.add(i);
             }
             return itemList;
