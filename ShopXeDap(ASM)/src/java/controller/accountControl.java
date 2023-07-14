@@ -13,13 +13,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Account;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name="updateStatus", urlPatterns={"/updatestatus"})
-public class updateStatus extends HttpServlet {
+@WebServlet(name="accountControl", urlPatterns={"/accountmanagement"})
+public class accountControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,12 +35,11 @@ public class updateStatus extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         BaseDAO dao = new BaseDAO();
-        int billId = Integer.parseInt(request.getParameter("billId"));
-        int status = Integer.parseInt(request.getParameter("status"));
+        List<Account> listAccount = dao.getAllAccount();
         
-        dao.updateStatus(status, billId);
-        response.sendRedirect("orderManagement.jsp");
-    } 
+        request.setAttribute("ListAccount", listAccount);
+        request.getRequestDispatcher("accountManagement.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

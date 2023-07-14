@@ -33,6 +33,30 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public List<Account> getAllAccount(){
+        String query = "select * from Account";
+        try{
+            List<Account> accountList = new ArrayList<>();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                int uId = rs.getInt("uID");
+                String user = rs.getNString("user");
+                String pass = rs.getNString("pass");
+                int isSell = rs.getInt("isSell");
+                int isAdmin = rs.getInt("isAdmin");
+                String email = rs.getString("email");
+                Account a = new Account(uId, user, pass, isSell, isAdmin);
+                a.setEmail(email);
+                accountList.add(a);
+            }
+            return accountList;
+        }catch (Exception e){
+        }
+        return null;
+    }
+    
     public List<Order> getAllBill(){
         String query = "SELECT b.*, ba.*\n" +
                         "FROM [dbo].[bill] AS b\n" +

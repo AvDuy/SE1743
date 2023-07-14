@@ -124,7 +124,7 @@
                                             <li><a href="managing">Sản phẩm</a></li>
                                         </c:if>
                                         <c:if test="${sessionScope.acc.isAdmin == 1}">
-                                            <li><a href="shop.html">Tài khoản</a></li>
+                                            <li><a href="accountmanagement">Tài khoản</a></li>
                                         </c:if>
                                         <c:if test="${sessionScope.acc.isSell == 1}">
                                             <li><a href="orderManagement.jsp">Đơn hàng</a></li>

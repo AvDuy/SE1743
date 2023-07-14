@@ -12,9 +12,18 @@ public class Account {
     private int id;
     private String user;
     private String password;
+    private String email;
     private int isSell;
     private int isAdmin;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public Account(int id, String user, String password, int isSell, int isAdmin) {
         this.id = id;
         this.user = user;
