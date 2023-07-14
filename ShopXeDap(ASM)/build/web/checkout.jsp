@@ -94,7 +94,15 @@
                         <div class="bill-to">
                             <p>Gửi đến địa chỉ:</p>
                             <div class="billInfo">
-                                    <input type="email" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                <c:choose>
+                                    <c:when test="${not empty sessionScope.acc.email}">
+                                        <input type="email" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300" value="${sessionScope.acc.email}" readonly>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="email" name="email" placeholder="Email*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
+                                    </c:otherwise>
+                                </c:choose>
+                                            
                                     <input type="text" name="firstName" placeholder="Tên*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
                                     <input type="text" name="LastName" placeholder="Họ*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">
                                     <input type="text" name="address1" placeholder="Địa chỉ chính*" required style="background:#F0F0E9;border: 0 none;margin-bottom:10px;padding: 10px;width: 100%;font-weight: 300">

@@ -70,7 +70,7 @@
                                 </c:otherwise>
                             </c:choose>
                             <li><a href="#"><i class="fa fa-star"></i> Danh sách muốn mua</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                            <li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                             <li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             <c:choose>
                                 <c:when test="${not empty sessionScope.acc}">

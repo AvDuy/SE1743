@@ -33,6 +33,38 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public List<Order> getAccountAddress(int uID){
+        String query = "SELECT b.*, a.*\n" +
+                        "FROM [dbo].[Account] AS a\n" +
+                        "JOIN [dbo].[BillAddress] AS b ON a.uID = b.uID\n" +
+                        "Where a.uID = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, uID);
+            ResultSet resultSet = ps.executeQuery();
+            List<Order> listOrder = new ArrayList<>();
+            while (resultSet.next()) {
+                Order oder = new Order();
+                int billId = resultSet.getInt("billId");
+                List<Item> listItem = getCartByBillId(billId);
+                oder.setEmail(resultSet.getString("email"));
+                oder.setFirstName(resultSet.getString("first_name"));
+                oder.setLastName(resultSet.getString("last_name"));
+                oder.setMainAddress(resultSet.getString("address1"));
+                oder.setAddress2(resultSet.getString("address2"));
+                oder.setPhone(resultSet.getString("phone"));
+                oder.setItems(listItem);
+                oder.setId(billId);
+                listOrder.add(oder);
+            }
+            return listOrder;
+        }catch (Exception e){
+        }
+        return null;
+        
+    }
+    
     public void updateAccount(int isSell, int isAdmin, int uID){
         String query = "UPDATE [dbo].[Account]\n" +
                         "   SET [isSell] = ?\n" +
@@ -466,11 +498,13 @@ public class BaseDAO {
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while(rs.next()){
-                return new Account(rs.getInt(1), 
+                Account a = new Account(rs.getInt(1), 
                         rs.getString(2), 
                         rs.getString(3), 
                         rs.getInt(4), 
                         rs.getInt(5));
+                a.setEmail(rs.getString(6));
+                return a;
             }
         }catch (Exception e){
         }

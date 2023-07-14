@@ -29,6 +29,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    
+    <c:if test="${sessionScope.acc.isSell != 1}">
+        <script>
+            window.location.href = "404.jsp";
+        </script>
+    </c:if>
+    
 </head><!--/head-->
 
 <body>

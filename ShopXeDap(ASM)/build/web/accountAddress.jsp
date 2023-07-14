@@ -1,3 +1,9 @@
+<%-- 
+    Document   : thankForShopping
+    Created on : Jul 14, 2023, 3:25:16 AM
+    Author     : admin
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -8,8 +14,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
@@ -18,7 +27,13 @@
         
     <!--MY CSS ><![endif]-->
     <link href="css/loginLogo.css" rel="stylesheet">
-
+    <link href="css/pagination.css" rel="stylesheet">
+    
+    <c:if test="${sessionScope.acc.isAdmin != 1}">
+        <script>
+            window.location.href = "404.jsp";
+        </script>
+    </c:if>
     
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -29,48 +44,31 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    
-    <c:if test="${sessionScope.acc.isSell != 1}">
-        <script>
-            window.location.href = "404.jsp";
-        </script>
-    </c:if>
-    
 </head><!--/head-->
 
 <body>
     <jsp:include page="header.jsp"></jsp:include>
-
-    <h2 class="title text-center">Thêm Sản Phẩm vào cửa hàng</h2>
-    <div style="padding: 50px;padding-inline: 30%;">
-        <form action="addProduct">
-            <div style="display: flex">
-                <label for="Category">Phân loại:</label><br>
-                <select id="Category" name="Category">
-                    <c:forEach items="${listCategory}" var = "cate">
-                        <option value="${cate.cid}" >${cate.cname}</option>
-                    </c:forEach>
-                </select>
-            </div>
-            <label for="name">Tên sản phẩm: </label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="image">Ảnh:</label><br>
-            <input type="text" id="image" name="image"><br>
-            <label for="price">Giá tiền:</label><br>
-            <input type="text" id="price" name="price"><br>
-            <label for="description">Mô tả chi tiết sản phẩm: </label><br>
-            <textarea id="description" name="description" rows="4" cols="50"></textarea>
-            <div style="
-                display: flex;
-                justify-content: center;
-                padding-top: 3%;
-            ">
-                <input type="submit" value="Thêm sản phẩm">
-            </div>
-        </form>
+    <div class="container" style="margin-bottom: 5%;">
+        <c:choose>
+            <c:when test="${empty addressList}">
+                <h2 class="title text-center">Tài khoản này chưa có địa chỉ giao hàng nào cả</h2>
+                <div style="display: flex;justify-content: center;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Found_nothing.png" style="width: 30%;">
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${addressList}" var="address" varStatus="loop">
+                    <h2 class="title text-center">Địa chỉ (${loop.index + 1}) của gmail</h2>
+                    <h4 style="align-self: center;">Email: ${address.email}</h4>
+                    <h4 style="align-self: center;">Họ tên: ${address.lastName} ${address.firstName}</h4>
+                    <h4 style="align-self: center;">Địa chỉ chính: ${address.mainAddress}</h4>
+                    <h4 style="align-self: center;">Địa chỉ 2: ${address.getAddress2()}</h4>
+                    <h4 style="align-self: center;">Số điện thoại: ${address.phone}</h4>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
-	
 
   
     <script src="js/jquery.js"></script>
@@ -79,6 +77,8 @@
 	<script src="js/price-range.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+    
+    
     
     <!-- MY JS -->
     <script src="js/sliderJS.js"></script>

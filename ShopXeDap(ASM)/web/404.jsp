@@ -42,9 +42,9 @@
         </div>
         <div class="content-404">
                 <img src="images/404/404.png" class="img-responsive" alt="" />
-                <h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
-                <p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
-                <h2><a href="<%= request.getContextPath() %>/home">Bring me back Home</a></h2>
+                <h1><b>OPPS!</b> Chúng tôi không thể tìm thấy trang bạn muốn vào</h1>
+                <p>Uh... Xin lỗi vì sự bất tiện. Trang bạn muốn vào có thể đã bị xoá, mất hoặc ẩn đi.</p>
+                <h2><a href="<%= request.getContextPath() %>/home">Trở lại trang chủ</a></h2>
         </div>
     </div>
 
