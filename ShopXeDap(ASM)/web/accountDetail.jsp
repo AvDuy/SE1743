@@ -29,6 +29,12 @@
     <link href="css/loginLogo.css" rel="stylesheet">
     <link href="css/pagination.css" rel="stylesheet">
     
+    <c:if test="${empty sessionScope.acc}">
+        <script>
+            window.location.href = "404.jsp";
+        </script>
+    </c:if>
+    
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -53,12 +59,74 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${addressList}" var="address" varStatus="loop">
-                    <h2 class="title text-center">Địa chỉ (${loop.index + 1}) của gmail</h2>
+                    <h2 class="title text-center">ĐƠN HÀNG (${loop.index + 1}) của gmail</h2>
                     <h4 style="align-self: center;">Email: ${address.email}</h4>
                     <h4 style="align-self: center;">Họ tên: ${address.lastName} ${address.firstName}</h4>
                     <h4 style="align-self: center;">Địa chỉ chính: ${address.mainAddress}</h4>
                     <h4 style="align-self: center;">Địa chỉ 2: ${address.getAddress2()}</h4>
                     <h4 style="align-self: center;">Số điện thoại: ${address.phone}</h4>
+                    <div class="table-responsive cart_info">
+                        <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
+                            <div class="col-sm-1" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                                <h4>Hình Ảnh</h4>
+                            </div>
+                            <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                                <h4>Tên sản phẩm</h4>
+                            </div>
+                            <div class="col-sm-3" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                                <h4>Giá sản phẩm</h4>
+                            </div>
+                            <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000">
+                                <h4>Số lượng</h4>
+                            </div>
+                            <div class="col-sm-3" style="display: flex;justify-content: center;align-items: center;border-color: #000">
+                                <h4>Tổng tiền</h4>
+                            </div>
+                        </div>
+                        <c:forEach items="${address.items}" var="item">
+                            <div class="row" style="height: 100px;border: 1px;border-style: solid;display: flex;">
+                                <div class="col-sm-1" style="border-right: 1px solid">
+                                    <img src="${item.image}" class="img-fluid" style="object-fit: contain;height: 100%;width: 100%;padding: 5px" alt="" />
+                                </div>
+                                <div class="col-sm-3" style="border-right: 1px solid; display: flex">
+                                    <h4 style="align-self: center;">${item.name}</h4>
+                                </div>
+                                <div class="col-sm-3" style="border-right: 1px solid;  display: flex; justify-content: flex-end">
+                                    <h2 style="align-self: center;">${item.getProductPrice()}₫</h2>
+                                </div>
+                                <div class="col-sm-2" style="border-right: 1px solid;display: flex;flex-direction: column;justify-content: center;">
+                                    <h2 style="align-self: center;">${item.quantity}</h2>
+                                </div>
+                                <div class="col-sm-3" style="display: flex; justify-content: flex-end;">
+                                    <h2 style="align-self: center;">${item.getTotalPrice()}₫</h2>
+
+                                </div>
+                            </div>
+                            
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${address.status == 0}">
+                              <h5>Trạng thái: Chờ xử lý</h5>
+                              <a href="updatecartclient?billId=${address.id}&status=3&uid=${sessionScope.acc.id}"><button class="submit-btn" style="margin-bottom: 2%;">Huỷ bỏ đơn hàng</button></a><br>
+                            </c:when>
+                            <c:when test="${address.status == 1}">
+                              <h5>Trạng thái: Đang giao hàng</h5>
+                              <a href="updatecartclient?billId=${address.id}&status=2&uid=${sessionScope.acc.id}"><button class="submit-btn" style="margin-bottom: 2%;">Xác nhận giao hàng thành công</button></a>
+                              <a href="updatecartclient?billId=${address.id}&status=3&uid=${sessionScope.acc.id}"><button class="submit-btn" style="margin-bottom: 2%;">Huỷ bỏ đơn hàng</button></a><br>
+                            </c:when>
+                            <c:when test="${address.status == 2}">
+                              <h5>Trạng thái: Giao hàng thành công, Cảm ơn quý khách</h5>
+                            </c:when>
+                            <c:when test="${address.status == 3}">
+                              <h5>Trạng thái: Đã bị huỷ</h5>
+                              <a href="updatecartclient?billId=${address.id}&status=0&uid=${sessionScope.acc.id}"><button class="submit-btn" style="margin-bottom: 2%;">Đặt lại</button></a><br>
+                            </c:when>
+                            <c:otherwise>
+                              <h5>Trạng thái: Unknown</h5>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <h2>Tổng giá trị đơn hàng: ${address.getTotalPrice()}₫</h2>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

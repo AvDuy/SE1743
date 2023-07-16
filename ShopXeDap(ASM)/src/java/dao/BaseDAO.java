@@ -33,6 +33,39 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public List<Order> getBillAdressByUid(int Uid){
+        String query = "SELECT b.*, ba.*\n" +
+                        "FROM [dbo].[bill] AS b\n" +
+                        "JOIN [dbo].[BillAddress] AS ba ON b.billAdId = ba.billId\n" +
+                        "WHERE ba.[uID] = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, Uid);
+            ResultSet resultSet = ps.executeQuery();
+            List<Order> listOrder = new ArrayList<>();
+            while (resultSet.next()) {
+                Order oder = new Order();
+                int billId = resultSet.getInt("billId");
+                List<Item> listItem = getCartByBillId(billId);
+                oder.setDate(resultSet.getDate("date_created"));
+                oder.setEmail(resultSet.getString("email"));
+                oder.setFirstName(resultSet.getString("first_name"));
+                oder.setLastName(resultSet.getString("last_name"));
+                oder.setMainAddress(resultSet.getString("address1"));
+                oder.setAddress2(resultSet.getString("address2"));
+                oder.setPhone(resultSet.getString("phone"));
+                oder.setItems(listItem);
+                oder.setStatus(resultSet.getInt("status"));
+                oder.setId(billId);
+                listOrder.add(oder);
+            }
+            return listOrder;
+        }catch (Exception e){
+        }
+        return null;
+    }
+    
     public void updateAddressEmail(String email){
         String query = "UPDATE ba\n" +
                         "SET ba.uID = a.uID\n" +
