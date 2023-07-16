@@ -121,7 +121,7 @@
 						</div>
 						<div class="tab-content">
                                                     <div class="tab-pane fade active in" id="details" >
-                                                        <p>${detailP.description}</p>
+                                                        <p style="white-space: pre"><pre>${detailP.description}</pre>
                                                     </div>
 
                                                     <div class="tab-pane fade" id="companyprofile" >

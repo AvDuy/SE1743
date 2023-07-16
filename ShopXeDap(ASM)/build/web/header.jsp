@@ -63,7 +63,7 @@
                         <ul class="nav navbar-nav">
                             <c:choose>
                                 <c:when test="${not empty sessionScope.acc}">
-                                    <li><a href="#"><i class="fa fa-user"></i>${sessionScope.acc.user}</a></li>
+                                    <li><a href="accountdetail?uid=${sessionScope.acc.id}"><i class="fa fa-user"></i>${sessionScope.acc.user}</a></li>
                                 </c:when>
                                 <c:otherwise>
                                     <li><a href="login.jsp"><i class="fa fa-user"></i> Tài khoản</a></li>
@@ -117,6 +117,9 @@
                             </li> 
                             <li><a href="404.jsp">404</a></li>
                             <li><a href="contact-us.html">Liên Hệ</a></li>
+                            <c:if test="${not empty sessionScope.acc}">
+                                <li><a href="accountdetail?uid=${sessionScope.acc.id}">Lịch sử đặt hàng</a></li>
+                            </c:if>
                             <c:if test="${sessionScope.acc.isSell == 1}">
                                 <li class="dropdown"><a href="#">Quản lý<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
