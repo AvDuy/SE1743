@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name="updateStatus", urlPatterns={"/updatestatus"})
-public class updateStatus extends HttpServlet {
+@WebServlet(name="changeAddress", urlPatterns={"/changeaddress"})
+public class changeAddress extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,12 +31,19 @@ public class updateStatus extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        BaseDAO dao = new BaseDAO();
-        int billId = Integer.parseInt(request.getParameter("billId"));
-        int status = Integer.parseInt(request.getParameter("status"));
+        response.setCharacterEncoding("UTF-8");
         
-        dao.updateStatus(status, billId);
-        response.sendRedirect("invoice");
+        String email = request.getParameter("email");
+        String lastName = request.getParameter("lastName");
+        String firstName = request.getParameter("firstName");
+        String mainAddress = request.getParameter("mainAddress");
+        String secondAddress = request.getParameter("addressSecond");
+        String phone = request.getParameter("phone");
+        int addressID = Integer.parseInt(request.getParameter("addressID"));
+        
+        BaseDAO dao = new BaseDAO();
+        dao.changeAddress(firstName, lastName, mainAddress, secondAddress, phone, addressID);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

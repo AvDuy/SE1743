@@ -74,7 +74,7 @@
                         <div class="form-holder">
                             <div class="login-form"><!--login form-->
                                 <form action="login" method="post">
-                                        <input name="user" type="text" placeholder="Email" />
+                                        <input name="user" type="text" placeholder="Tên tài khoản" />
                                         <input name="pass" type="password" placeholder="Mật khẩu" />
                                         <span>
                                         <input type="checkbox" class="checkbox"> 

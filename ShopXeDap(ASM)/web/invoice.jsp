@@ -68,6 +68,27 @@
                 <h2 class="title text-center">TẤT CẢ ĐƠN HÀNG</h2>
             </c:otherwise>
         </c:choose>
+            <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-bottom: 2%;">Trạng thái đơn
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="invoice?status=0">Chưa xử lý</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                        <li><a href="invoice?status=1">Đang giao</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="invoice?status=2">Giao thành công</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="invoice?status=3">Bị huỷ</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="invoice">Tất cả</a></li>
+                    </c:if>
+                </ul>
+            </div>
         <div class="table-responsive cart_info">
             <div class="row" style="background-color: #FE980F;border: 1px;border-style: solid;display: flex; color: #fff; border-color: #000">
                 <div class="col-sm-2" style="border-right: 1px solid;display: flex;justify-content: center;align-items: center;border-color: #000; width: 11%;

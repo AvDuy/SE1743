@@ -58,12 +58,30 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${addressList}" var="address" varStatus="loop">
-                    <h2 class="title text-center">Địa chỉ (${loop.index + 1}) của gmail</h2>
-                    <h4 style="align-self: center;">Email: ${address.email}</h4>
-                    <h4 style="align-self: center;">Họ tên: ${address.lastName} ${address.firstName}</h4>
-                    <h4 style="align-self: center;">Địa chỉ chính: ${address.mainAddress}</h4>
-                    <h4 style="align-self: center;">Địa chỉ 2: ${address.getAddress2()}</h4>
-                    <h4 style="align-self: center;">Số điện thoại: ${address.phone}</h4>
+                    <form action="changeaddress">
+                        <h2 class="title text-center">Địa chỉ (${loop.index + 1}) của gmail</h2>
+                        <h4 style="align-self: center;">Email:
+                            <input type="text" name="email" value="${address.email}" readonly><br>
+                        </h4>
+                        <h4 style="align-self: center;">Họ:
+                            <input type="text" name="lastName" value="${address.lastName}" required><br>
+                        </h4>
+                        <h4 style="align-self: center;">Tên:
+                            <input type="text" name="firstName" value="${address.firstName}" required><br>
+                        </h4>
+                        <h4 style="align-self: center;">Địa chỉ chính:
+                            <input type="text" name="mainAddress" value="${address.mainAddress}" required><br>
+                        </h4>
+                        <h4 style="align-self: center;">Địa chỉ 2: ${address.getAddress2()}
+                            <input type="text" name="addressSecond" value="${address.getAddress2()}"><br>
+                        </h4>
+                        <h4 style="align-self: center;">Số điện thoại:
+                        <input type="tel" value="${address.phone}" name="phone" placeholder="Số điện thoại (xxx xxx xxxx)*" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" required>
+                        </h4>
+                        <input type="hidden" name="addressID" value="${address.id}">
+                        <button class="submit-btn" type="submit" style="margin: 2%;">Cập nhật địa chỉ</button>
+                        
+                    </form>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

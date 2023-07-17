@@ -33,6 +33,29 @@ public class BaseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
+    public void changeAddress(String firstName, String lastName,String mainAddress, String secondAddress ,String phone, int billId){
+        String query = "UPDATE [dbo].[BillAddress]\n" +
+                        "   SET [first_name] = ?\n" +
+                        "      ,[last_name] = ?\n" +
+                        "      ,[address1] = ?\n" +
+                        "      ,[address2] = ?\n" +
+                        "      ,[phone] = ?\n" +
+                        " WHERE [billId] = ?";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, firstName);
+            ps.setString(2, lastName);
+            ps.setString(3, mainAddress);
+            ps.setString(4, secondAddress);
+            ps.setString(5, phone);
+            ps.setInt(6, billId);
+            ps.executeUpdate();
+        }catch (Exception e){
+        }
+        
+    }
+    
     public List<Order> getBillAdressByUid(int Uid){
         String query = "SELECT b.*, ba.*\n" +
                         "FROM [dbo].[bill] AS b\n" +

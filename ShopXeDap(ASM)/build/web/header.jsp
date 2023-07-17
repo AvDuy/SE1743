@@ -130,7 +130,7 @@
                                             <li><a href="accountmanagement">Tài khoản</a></li>
                                         </c:if>
                                         <c:if test="${sessionScope.acc.isSell == 1}">
-                                            <li><a href="orderManagement.jsp">Đơn hàng</a></li>
+                                            <li><a href="invoice">Đơn hàng</a></li>
                                         </c:if>
                                     </ul>
                                 </li>

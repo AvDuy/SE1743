@@ -49,7 +49,31 @@
 
 <body>
     <jsp:include page="header.jsp"></jsp:include>
+    
+    
     <div class="container" style="display: flex;flex-direction: column;margin-bottom: 5%;">
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                <span class="caret"></span></button>
+                <a href="#">Trạng thái đơn hàng<i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                <ul role="menu" class="sub-menu">
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="managing">Sản phẩm</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                        <li><a href="accountmanagement">Tài khoản</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li><a href="invoice">Đơn hàng</a></li>
+                    </c:if>
+                </ul>
+            </div>
         <a href="invoice?status=0" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
             <h2>
                 CHƯA XỬ LÝ
@@ -75,6 +99,7 @@
                 TẤT CẢ ĐƠN HÀNG
             </h2>
         </a>
+        </div>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
 
